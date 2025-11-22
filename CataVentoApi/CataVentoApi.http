@@ -1,0 +1,6 @@
+@CataVentoApi_HostAddress = http://localhost:5145
+
+GET {{CataVentoApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
