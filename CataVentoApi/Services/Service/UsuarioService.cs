@@ -148,6 +148,15 @@ namespace CataVentoApi.Services.Service
                 return false;
             }
 
+            if(existingUser.Email != usuarioRequestDto.Email)
+            {
+                var existingUserByEmail = await _usuarioRepository.GetByEmail(usuarioRequestDto.Email);
+                if (existingUserByEmail != null)
+                {
+                    return false;
+                }
+            }
+
             string passwordToStore = existingUser.Password;
             if (!string.IsNullOrWhiteSpace(usuarioRequestDto.Password))
             {

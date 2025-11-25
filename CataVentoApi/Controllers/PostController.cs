@@ -28,6 +28,16 @@ namespace CataVentoApi.Controllers
             return Ok(post);
         }
 
+        [HttpGet("user/{userId}")]
+        public async Task<IActionResult> GetPostsByUserId(
+            long userId, 
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 5)
+        {
+            var posts = await _postService.GetPostsByUserIdAsync(userId, pageNumber, pageSize);
+            return Ok(posts);
+        }
+
         [HttpGet("group/{groupId}")]
         public async Task<IActionResult> GetPostsByGroupId(
             long groupId, 
