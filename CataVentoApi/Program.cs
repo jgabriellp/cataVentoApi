@@ -45,6 +45,12 @@ builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<IPostLikerRepository, PostLikerRepository>();
 builder.Services.AddScoped<IPostLikerService, PostLikerService>();
 
+builder.Services.AddScoped<INoticeRepository, NoticeRepository>();
+builder.Services.AddScoped<INoticeService, NoticeService>();
+
+builder.Services.AddScoped<INoticeAudienceRepository, NoticeAudienceRepository>();
+//builder.Services.AddScoped<INoticeAudienceService, NoticeAudienceService>();
+
 var jwtKey = builder.Configuration["Jwt:Key"];
 var keyBytes = Encoding.UTF8.GetBytes(jwtKey);
 

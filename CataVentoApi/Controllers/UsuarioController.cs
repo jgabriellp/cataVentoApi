@@ -70,6 +70,15 @@ namespace CataVentoApi.Controllers
             return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id }, createdUser);
         }
 
+        [HttpPut("update-password/{id}")]
+        public async Task<IActionResult> UpdateUserPassword(long id, [FromBody] UpdatePasswordRequestDto updatePasswordRequestDto)
+        {
+            var result = await _usuarioService.SetNewPassword(id, updatePasswordRequestDto.oldPassword, updatePasswordRequestDto.newPassword);
+            if (!result)
+                return BadRequest("Old password is incorrect or user not found.");
+            return NoContent();
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(long id, [FromBody] UsuarioRequestDto usuarioRequestDto)
         {

@@ -140,6 +140,22 @@ namespace CataVentoApi.Services.Service
             return await _usuarioRepository.DeleteAsync(id);
         }
 
+        public async Task<bool> SetNewPassword(long userId, string oldPassword, string newPassword)
+        {
+            var user = await _usuarioRepository.GetById(userId);
+
+            if (user == null || !BCrypt.Net.BCrypt.Verify(oldPassword, user.Password))
+            {
+                return false;
+            }
+
+            string hashedNewPassword = BCrypt.Net.BCrypt.HashPassword(newPassword);
+            
+            user.Password = hashedNewPassword;
+
+            return await _usuarioRepository.UpdateAsync(user);
+        }
+
         public async Task<bool> UpdateUserAsync(long id, UsuarioRequestDto usuarioRequestDto)
         {
             var existingUser = await _usuarioRepository.GetById(id);
