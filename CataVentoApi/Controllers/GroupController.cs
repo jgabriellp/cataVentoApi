@@ -89,7 +89,7 @@ namespace CataVentoApi.Controllers
         }
 
         [HttpPut("{groupId}")]
-        public async Task<IActionResult> UpdateGroup(long groupId, [FromBody] GroupUpdateRequestDto groupUpdateRequestDto)
+        public async Task<IActionResult> UpdateGroup(int groupId, [FromBody] GroupUpdateRequestDto groupUpdateRequestDto)
         {
             var result = await _groupService.UpdateGroupAsync(groupId, groupUpdateRequestDto);
             if (!result)

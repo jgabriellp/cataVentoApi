@@ -10,6 +10,6 @@ namespace CataVentoApi.Entity.Dto.ResponseDto
         public RoleEnum Role { get; set; }
         public string Email { get; set; }
         public string PhotoUrl { get; set; }
-        public List<long> GroupIds { get; set; } = new List<long>();
+        public List<int> GroupIds { get; set; } = new List<int>();
     }
 }

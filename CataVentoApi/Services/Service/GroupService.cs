@@ -114,7 +114,7 @@ namespace CataVentoApi.Services.Service
             return createdGroup;
         }
 
-        public async Task<bool> UpdateGroupAsync(long id, GroupUpdateRequestDto groupUpdateRequestDto)
+        public async Task<bool> UpdateGroupAsync(int id, GroupUpdateRequestDto groupUpdateRequestDto)
         {
             var group = await _groupRepository.GetGroupByIdAsync(id);
             if (group == null)

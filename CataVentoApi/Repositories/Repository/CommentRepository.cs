@@ -2,6 +2,8 @@
 using CataVentoApi.Entity;
 using CataVentoApi.Repositories.Interface;
 using Dapper;
+using System.ComponentModel.Design;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CataVentoApi.Repositories.Repository
 {
@@ -14,22 +16,27 @@ namespace CataVentoApi.Repositories.Repository
             _connection = connection;
         }
 
-        // IN() do SQL para buscar todos os comentários de uma vez
         public async Task<IEnumerable<Comment>> GetCommentsByPostIdsAsync(IEnumerable<long> postIds)
         {
-            const string query = "SELECT CommentId, PostId, CreatorId FROM [Comment] WHERE PostId IN @PostIds";
+            const string query = "SELECT \"CommentId\", \"PostId\", \"CreatorId\" FROM \"Comment\" WHERE \"PostId\" = ANY(@PostIds)";
+
+            var postIdsList = postIds.ToList();
 
             using (var connection = _connection.CreateConnection())
             {
-                var comments = await connection.QueryAsync<Comment>(query, new { PostIds = postIds });
+                var comments = await connection.QueryAsync<Comment>(
+                    query,
+                    new { PostIds = postIdsList }
+                );
+
                 return comments;
             }
         }
 
         public async Task<Comment?> GetCommentByIdAsync(long commentId)
         {
-            const string query = "SELECT * FROM Comment WHERE CommentId = @CommentId";
-            
+            const string query = "SELECT * FROM \"Comment\" WHERE \"CommentId\" = @CommentId";
+
             using (var connection = _connection.CreateConnection())
             {
                 var comment = await connection.QueryFirstOrDefaultAsync<Comment>(query, new { CommentId = commentId });
@@ -39,7 +46,7 @@ namespace CataVentoApi.Repositories.Repository
 
         public async Task<IEnumerable<Comment>> GetCommentsByPostIdAsync(long postId)
         {
-            const string query = "SELECT * FROM Comment WHERE PostId = @PostId ORDER BY [Date] DESC";
+            const string query = "SELECT * FROM \"Comment\" WHERE \"PostId\" = @PostId ORDER BY \"Date\" DESC";
 
             using (var connection = _connection.CreateConnection())
             {
@@ -51,9 +58,9 @@ namespace CataVentoApi.Repositories.Repository
         public async Task<Comment> CreateCommentAsync(Comment comment)
         {
             const string query = @"
-                INSERT INTO Comment (Content, Date, PostId, CreatorId)
-                VALUES (@Content, @Date, @PostId, @CreatorId);
-                SELECT CAST(SCOPE_IDENTITY() as bigint);";
+                INSERT INTO ""Comment"" (""Content"", ""Date"", ""PostId"", ""CreatorId"")
+                VALUES (@Content, @Date, @PostId, @CreatorId)
+                RETURNING ""CommentId"";";
 
             using (var connection = _connection.CreateConnection())
             {
@@ -66,12 +73,13 @@ namespace CataVentoApi.Repositories.Repository
         public async Task<bool> UpdateCommentAsync(Comment comment)
         {
             const string query = @"
-                UPDATE Comment
-                SET Content = @Content,
-                    Date = @Date,
-                    PostId = @PostId,
-                    CreatorId = @CreatorId
-                WHERE CommentId = @CommentId";
+                UPDATE ""Comment""
+                SET ""Content"" = @Content,
+                    ""Date"" = @Date,
+                    ""PostId"" = @PostId,
+                    ""CreatorId"" = @CreatorId
+                WHERE ""CommentId"" = @CommentId";
+
 
             using (var connection = _connection.CreateConnection())
             {
@@ -82,7 +90,7 @@ namespace CataVentoApi.Repositories.Repository
 
         public async Task<bool> DeleteCommentAsync(long commentId)
         {
-            const string query = "DELETE FROM Comment WHERE CommentId = @CommentId";
+            const string query = "DELETE FROM \"Comment\" WHERE \"CommentId\" = @CommentId";
 
             using (var connection = _connection.CreateConnection())
             {

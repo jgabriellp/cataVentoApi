@@ -1,5 +1,6 @@
-﻿using System.Data;
-using Microsoft.Data.SqlClient;
+﻿//using Microsoft.Data.SqlClient;
+using Npgsql;
+using System.Data;
 
 namespace CataVentoApi.DataContext
 {
@@ -11,9 +12,9 @@ namespace CataVentoApi.DataContext
         public DapperContext(IConfiguration configuration)
         {
             _configuration = configuration;
-            _connectionString = _configuration.GetConnectionString("SqlConnection");
+            _connectionString = _configuration.GetConnectionString("PostgresConnection");
         }
 
-        public IDbConnection CreateConnection() => new SqlConnection(_connectionString);
+        public IDbConnection CreateConnection() => new NpgsqlConnection(_connectionString);
     }
 }

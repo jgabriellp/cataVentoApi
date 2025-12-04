@@ -1,6 +1,7 @@
 ﻿using CataVentoApi.DataContext;
 using CataVentoApi.Repositories.Interface;
 using Dapper;
+using System;
 
 namespace CataVentoApi.Repositories.Repository
 {
@@ -16,18 +17,19 @@ namespace CataVentoApi.Repositories.Repository
         public async Task<IEnumerable<(long PostId, long UsuarioId)>> GetLikersByPostIdsAsync(IEnumerable<long> postIds)
         {
             const string query = @"
-                SELECT PostId, UsuarioId 
-                FROM PostLiker 
-                WHERE PostId IN @PostIds";
+                SELECT ""PostId"", ""UsuarioId"" 
+                FROM ""PostLiker"" 
+                WHERE ""PostId"" = ANY(@PostIds)";
+
+            var postIdsList = postIds.ToList();
 
             using (var connection = _connection.CreateConnection())
             {
-                // Retorna uma lista de tuplas para simplificar o mapeamento
                 var likerAssociations = await connection.QueryAsync<
-                    (long PostId, long UsuarioId)>(
-                        query,
-                        new { PostIds = postIds }
-                    );
+                     (long PostId, long UsuarioId)>(
+                         query,
+                         new { PostIds = postIdsList }
+                     );
 
                 return likerAssociations;
             }
@@ -36,10 +38,10 @@ namespace CataVentoApi.Repositories.Repository
         public async Task AddLikeAsync(long postId, long usuarioId)
         {
             const string query = @"
-                INSERT INTO PostLiker (PostId, UsuarioId)
+                INSERT INTO ""PostLiker"" (""PostId"", ""UsuarioId"") -- Aspas duplas na tabela e colunas
                 VALUES (@PostId, @UsuarioId);";
 
-            using(var connection = _connection.CreateConnection())
+            using (var connection = _connection.CreateConnection())
             {
                 await connection.ExecuteAsync(query, new { PostId = postId, UsuarioId = usuarioId });
             }
@@ -47,7 +49,7 @@ namespace CataVentoApi.Repositories.Repository
 
         public async Task<bool> HasUserLikedAsync(long postId, long usuarioId)
         {
-            const string query = "SELECT COUNT(1) FROM PostLiker WHERE PostId = @PostId AND UsuarioId = @UsuarioId";
+            const string query = "SELECT COUNT(1) FROM \"PostLiker\" WHERE \"PostId\" = @PostId AND \"UsuarioId\" = @UsuarioId"; // Aspas duplas
 
             using (var connection = _connection.CreateConnection())
             {
@@ -59,8 +61,8 @@ namespace CataVentoApi.Repositories.Repository
         public async Task RemoveLikeAsync(long postId, long usuarioId)
         {
             const string query = @"
-                DELETE FROM PostLiker
-                WHERE PostId = @PostId AND UsuarioId = @UsuarioId;";
+                DELETE FROM ""PostLiker"" -- Aspas duplas na tabela
+                WHERE ""PostId"" = @PostId AND ""UsuarioId"" = @UsuarioId;";
 
             using (var connection = _connection.CreateConnection())
             {
@@ -72,11 +74,12 @@ namespace CataVentoApi.Repositories.Repository
         {
             const string query = @"
                 SELECT COUNT(1) 
-                FROM PostLiker 
-                WHERE PostId = @PostId AND UsuarioId = @UsuarioId";
+                FROM ""PostLiker""
+                WHERE ""PostId"" = @PostId AND ""UsuarioId"" = @UsuarioId";
 
             using (var connection = _connection.CreateConnection())
             {
+                // ExecuteScalarAsync<int> funciona perfeitamente para COUNT(1)
                 var count = await connection.ExecuteScalarAsync<int>(
                     query,
                     new { PostId = postId, UsuarioId = usuarioId }

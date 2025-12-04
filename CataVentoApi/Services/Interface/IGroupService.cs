@@ -12,7 +12,7 @@ namespace CataVentoApi.Services.Interface
         Task<Group> AddUsersToGroupAsync(long groupId, List<long> userIds);
         Task<Group> RemoveUsersFromGroupAsync(long groupId, List<long> userIds);
         Task<Group> CreateGroupAsync(GroupRequestDto groupRequestDto);
-        Task<bool> UpdateGroupAsync(long id, GroupUpdateRequestDto groupUpdateRequestDto);
+        Task<bool> UpdateGroupAsync(int id, GroupUpdateRequestDto groupUpdateRequestDto);
         Task<bool> DeleteGroupAsync(long id);
     }
 }

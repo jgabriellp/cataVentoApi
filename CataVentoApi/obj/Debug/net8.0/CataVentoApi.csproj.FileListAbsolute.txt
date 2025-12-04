@@ -168,3 +168,5 @@ D:\Projetos Asp.NET\CataVentoApi\CataVentoApi\obj\Debug\net8.0\CataVentoApi.genr
 D:\Projetos Asp.NET\CataVentoApi\CataVentoApi\obj\Debug\net8.0\ref\CataVentoApi.dll
 D:\Projetos Asp.NET\CataVentoApi\CataVentoApi\bin\Debug\net8.0\CloudinaryDotNet.dll
 D:\Projetos Asp.NET\CataVentoApi\CataVentoApi\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\Projetos Asp.NET\CataVentoApi\CataVentoApi\bin\Debug\net8.0\Npgsql.dll
+D:\Projetos Asp.NET\CataVentoApi\CataVentoApi\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll

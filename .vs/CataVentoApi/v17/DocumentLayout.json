@@ -3,40 +3,8 @@
   "WorkspaceRootPath": "D:\\Projetos Asp.NET\\CataVentoApi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|d:\\projetos asp.net\\cataventoapi\\cataventoapi\\repositories\\repository\\noticeaudiencerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|solutionrelative:cataventoapi\\repositories\\repository\\noticeaudiencerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|d:\\projetos asp.net\\cataventoapi\\cataventoapi\\repositories\\repository\\noticerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|solutionrelative:cataventoapi\\repositories\\repository\\noticerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|d:\\projetos asp.net\\cataventoapi\\cataventoapi\\controllers\\noticecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|solutionrelative:cataventoapi\\controllers\\noticecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|d:\\projetos asp.net\\cataventoapi\\cataventoapi\\services\\interface\\inoticeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|solutionrelative:cataventoapi\\services\\interface\\inoticeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|d:\\projetos asp.net\\cataventoapi\\cataventoapi\\entity\\dto\\requestdto\\noticeaudiencerequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|solutionrelative:cataventoapi\\entity\\dto\\requestdto\\noticeaudiencerequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|d:\\projetos asp.net\\cataventoapi\\cataventoapi\\entity\\dto\\requestdto\\noticeresquestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|solutionrelative:cataventoapi\\entity\\dto\\requestdto\\noticeresquestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|d:\\projetos asp.net\\cataventoapi\\cataventoapi\\services\\service\\noticeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|solutionrelative:cataventoapi\\services\\service\\noticeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|d:\\projetos asp.net\\cataventoapi\\cataventoapi\\entity\\notice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|solutionrelative:cataventoapi\\entity\\notice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|d:\\projetos asp.net\\cataventoapi\\cataventoapi\\entity\\noticeaudience.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|solutionrelative:cataventoapi\\entity\\noticeaudience.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|d:\\projetos asp.net\\cataventoapi\\cataventoapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|solutionrelative:cataventoapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,123 +14,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "NoticeController.cs",
-              "DocumentMoniker": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Controllers\\NoticeController.cs",
-              "RelativeDocumentMoniker": "CataVentoApi\\Controllers\\NoticeController.cs",
-              "ToolTip": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Controllers\\NoticeController.cs",
-              "RelativeToolTip": "CataVentoApi\\Controllers\\NoticeController.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAuwEgAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T12:21:31.863Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "INoticeService.cs",
-              "DocumentMoniker": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Services\\Interface\\INoticeService.cs",
-              "RelativeDocumentMoniker": "CataVentoApi\\Services\\Interface\\INoticeService.cs",
-              "ToolTip": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Services\\Interface\\INoticeService.cs",
-              "RelativeToolTip": "CataVentoApi\\Services\\Interface\\INoticeService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T12:20:52.695Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "NoticeAudienceRequestDto.cs",
-              "DocumentMoniker": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Entity\\Dto\\RequestDto\\NoticeAudienceRequestDto.cs",
-              "RelativeDocumentMoniker": "CataVentoApi\\Entity\\Dto\\RequestDto\\NoticeAudienceRequestDto.cs",
-              "ToolTip": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Entity\\Dto\\RequestDto\\NoticeAudienceRequestDto.cs",
-              "RelativeToolTip": "CataVentoApi\\Entity\\Dto\\RequestDto\\NoticeAudienceRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T12:02:06.766Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "NoticeResquestDto.cs",
-              "DocumentMoniker": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Entity\\Dto\\RequestDto\\NoticeResquestDto.cs",
-              "RelativeDocumentMoniker": "CataVentoApi\\Entity\\Dto\\RequestDto\\NoticeResquestDto.cs",
-              "ToolTip": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Entity\\Dto\\RequestDto\\NoticeResquestDto.cs",
-              "RelativeToolTip": "CataVentoApi\\Entity\\Dto\\RequestDto\\NoticeResquestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T12:01:52.22Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "NoticeService.cs",
-              "DocumentMoniker": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Services\\Service\\NoticeService.cs",
-              "RelativeDocumentMoniker": "CataVentoApi\\Services\\Service\\NoticeService.cs",
-              "ToolTip": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Services\\Service\\NoticeService.cs",
-              "RelativeToolTip": "CataVentoApi\\Services\\Service\\NoticeService.cs",
-              "ViewState": "AgIAAEMAAAAAAAAAAAAqwF0AAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-28T21:18:53.854Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "NoticeAudienceRepository.cs",
-              "DocumentMoniker": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Repositories\\Repository\\NoticeAudienceRepository.cs",
-              "RelativeDocumentMoniker": "CataVentoApi\\Repositories\\Repository\\NoticeAudienceRepository.cs",
-              "ToolTip": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Repositories\\Repository\\NoticeAudienceRepository.cs",
-              "RelativeToolTip": "CataVentoApi\\Repositories\\Repository\\NoticeAudienceRepository.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAIwCQAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-28T00:46:17.964Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "NoticeRepository.cs",
-              "DocumentMoniker": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Repositories\\Repository\\NoticeRepository.cs",
-              "RelativeDocumentMoniker": "CataVentoApi\\Repositories\\Repository\\NoticeRepository.cs",
-              "ToolTip": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Repositories\\Repository\\NoticeRepository.cs",
-              "RelativeToolTip": "CataVentoApi\\Repositories\\Repository\\NoticeRepository.cs",
-              "ViewState": "AgIAAKkAAAAAAAAAAAAwwMAAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T12:03:56.784Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Notice.cs",
-              "DocumentMoniker": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Entity\\Notice.cs",
-              "RelativeDocumentMoniker": "CataVentoApi\\Entity\\Notice.cs",
-              "ToolTip": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Entity\\Notice.cs",
-              "RelativeToolTip": "CataVentoApi\\Entity\\Notice.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-28T21:16:49.669Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "NoticeAudience.cs",
-              "DocumentMoniker": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Entity\\NoticeAudience.cs",
-              "RelativeDocumentMoniker": "CataVentoApi\\Entity\\NoticeAudience.cs",
-              "ToolTip": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Entity\\NoticeAudience.cs",
-              "RelativeToolTip": "CataVentoApi\\Entity\\NoticeAudience.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-28T00:25:41.816Z",
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\appsettings.json",
+              "RelativeDocumentMoniker": "CataVentoApi\\appsettings.json",
+              "ToolTip": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\appsettings.json",
+              "RelativeToolTip": "CataVentoApi\\appsettings.json",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAswAsAAAB9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-04T19:25:10.833Z",
               "EditorCaption": ""
             }
           ]

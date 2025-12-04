@@ -124,6 +124,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseSwagger();
+app.UseSwaggerUI();
+
 app.UseCors("AllowSpecificOrigin");
 
 // Middleware de roteamento

@@ -1,16 +1,16 @@
 version: '3.9'
 
 services:
-  sqldb:
-    image: mcr.microsoft.com/mssql/server:2019-latest
-    container_name: mssql_catavento_db
+  postgresdb:
+    image: postgres:14-alpine
+    container_name: postgres_catavento_db
     environment:
-      SA_PASSWORD: "1q2w3e4r@#$"
-      ACCEPT_EULA: "Y"
+      POSTGRES_USER: admin_catavento_db
+      POSTGRES_PASSWORD: "1q2w3e4r@#$"
     ports:
-      - "1433:1433"
+      - "5432:5432"
     volumes:
-      - sqldata:/var/opt/mssql
+      - pgdata:/var/lib/postgresql/data
 
 volumes:
-  sqldata:
+  pgdata:

@@ -77,7 +77,7 @@ namespace CataVentoApi.Services.Service
             
             if (!posts.Any()) return Enumerable.Empty<Post>();
 
-            var postIds = posts.Select(p => p.PostId);
+            var postIds = posts.Select(p => p.PostId).ToList();
 
             var comments = await _commentRepository.GetCommentsByPostIdsAsync(postIds);
 

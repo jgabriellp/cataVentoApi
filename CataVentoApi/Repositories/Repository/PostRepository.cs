@@ -2,6 +2,8 @@
 using CataVentoApi.Entity;
 using CataVentoApi.Repositories.Interface;
 using Dapper;
+using System.Text.RegularExpressions;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CataVentoApi.Repositories.Repository
 {
@@ -16,31 +18,35 @@ namespace CataVentoApi.Repositories.Repository
 
         public async Task<Post?> GetPostByIdAsync(long postId)
         {
-            const string query = "SELECT * FROM Post WHERE PostId = @PostId";
+            const string query = "SELECT * FROM \"Post\" WHERE \"PostId\" = @PostId";
+
             const string sqlAssociations = @"
-                SELECT P.*, 
-                       L.UsuarioId AS LikersIds,
-                       C.CommentId AS CommentsIds
-                FROM Post P
-                LEFT JOIN PostLiker L ON P.PostId = L.PostId
-                LEFT JOIN [Comment] C ON P.PostId = C.PostId
-                WHERE P.PostId = @PostId";
+                SELECT 
+                    P.*,
+                    L.""UsuarioId"" AS LikersIds,
+                    C.""CommentId"" AS CommentsIds
+                FROM ""Post"" P
+                LEFT JOIN ""PostLiker"" L ON P.""PostId"" = L.""PostId""
+                LEFT JOIN ""Comment"" C ON P.""PostId"" = C.""PostId""
+                WHERE P.""PostId"" = @PostId";
 
             using (var connection = _connection.CreateConnection())
             {
                 var post = await connection.QueryFirstOrDefaultAsync<Post>(query, new { PostId = postId });
+
                 var associations = await connection.QueryAsync<dynamic>(sqlAssociations, new { PostId = postId });
 
                 if (post != null)
                 {
                     post.LikersIds = associations
-                        .Where(a => a.LikersIds != null)
-                        .Select(a => (long)a.LikersIds)
+                        .Where(a => a.likersids != null)
+                        .Select(a => (long)a.likersids)
                         .Distinct()
                         .ToList();
+
                     post.CommentsIds = associations
-                        .Where(a => a.CommentsIds != null)
-                        .Select(a => (long)a.CommentsIds)
+                        .Where(a => a.commentsids != null)
+                        .Select(a => (long)a.commentsids)
                         .Distinct()
                         .ToList();
                 }
@@ -51,27 +57,23 @@ namespace CataVentoApi.Repositories.Repository
 
         public async Task<IEnumerable<Post>> GetPostsByGroupIdAsync(long groupId, int pageNumber, int pageSize)
         {
-            //const string query = "SELECT * FROM Post WHERE GroupId = @GroupId ORDER BY [Date] DESC";
             int offset = (pageNumber - 1) * pageSize;
-            
+
             const string query = @"
-                SELECT * FROM Post 
-                WHERE GroupId = @GroupId 
-                ORDER BY [Date] DESC 
-                OFFSET @Offset ROWS 
-                FETCH NEXT @PageSize ROWS ONLY;
-    ";
+                SELECT * FROM ""Post"" 
+                WHERE ""GroupId"" = @GroupId 
+                ORDER BY ""Date"" DESC 
+                LIMIT @PageSize OFFSET @Offset;";
 
             using (var connection = _connection.CreateConnection())
             {
-                //var posts = await connection.QueryAsync<Post>(query, new { GroupId = groupId });
                 var posts = await connection.QueryAsync<Post>(
                     query,
                     new
                     {
                         GroupId = groupId,
-                        Offset = offset,     // O ponto de partida da página
-                        PageSize = pageSize  // O número de itens na página
+                        Offset = offset,
+                        PageSize = pageSize
                     }
                 );
 
@@ -81,27 +83,23 @@ namespace CataVentoApi.Repositories.Repository
 
         public async Task<IEnumerable<Post>> GetPostsByUserIdAsync(long userId, int pageNumber, int pageSize)
         {
-            //const string query = "SELECT * FROM Post WHERE GroupId = @GroupId ORDER BY [Date] DESC";
             int offset = (pageNumber - 1) * pageSize;
 
             const string query = @"
-                SELECT * FROM Post 
-                WHERE CreatorId = @CreatorId 
-                ORDER BY [Date] DESC 
-                OFFSET @Offset ROWS 
-                FETCH NEXT @PageSize ROWS ONLY;
-    ";
+                SELECT * FROM ""Post"" 
+                WHERE ""CreatorId"" = @CreatorId 
+                ORDER BY ""Date"" DESC 
+                LIMIT @PageSize OFFSET @Offset;";
 
             using (var connection = _connection.CreateConnection())
             {
-                //var posts = await connection.QueryAsync<Post>(query, new { GroupId = groupId });
                 var posts = await connection.QueryAsync<Post>(
                     query,
                     new
                     {
                         CreatorId = userId,
-                        Offset = offset,     // O ponto de partida da página
-                        PageSize = pageSize  // O número de itens na página
+                        Offset = offset,
+                        PageSize = pageSize
                     }
                 );
 
@@ -112,9 +110,9 @@ namespace CataVentoApi.Repositories.Repository
         public async Task<Post> CreatePostAsync(Post post)
         {
             const string query = @"
-                INSERT INTO Post (Content, Date, GroupId, CreatorId, ImageUrl)
-                VALUES (@Content, @Date, @GroupId, @CreatorId, @ImageUrl);
-                SELECT CAST(SCOPE_IDENTITY() as bigint);";
+                INSERT INTO ""Post"" (""Content"", ""Date"", ""GroupId"", ""CreatorId"", ""ImageUrl"")
+                VALUES (@Content, @Date, @GroupId, @CreatorId, @ImageUrl)
+                RETURNING ""PostId"";";
 
             using (var connection = _connection.CreateConnection())
             {
@@ -127,13 +125,14 @@ namespace CataVentoApi.Repositories.Repository
         public async Task<bool> UpdatePostAsync(Post post)
         {
             const string query = @"
-                UPDATE Post
-                SET Content = @Content,
-                    Date = @Date,
-                    GroupId = @GroupId,
-                    CreatorId = @CreatorId,
-                    ImageUrl = @ImageUrl
-                WHERE PostId = @PostId";
+                UPDATE ""Post"" -- Aspas duplas na tabela
+                SET ""Content"" = @Content,
+                    ""Date"" = @Date,
+                    ""GroupId"" = @GroupId,
+                    ""CreatorId"" = @CreatorId,
+                    ""ImageUrl"" = @ImageUrl
+                WHERE ""PostId"" = @PostId";
+
 
             using (var connection = _connection.CreateConnection())
             {
@@ -144,7 +143,8 @@ namespace CataVentoApi.Repositories.Repository
 
         public async Task<bool> DeletePostAsync(long postId)
         {
-            const string query = "DELETE FROM Post WHERE PostId = @PostId";
+            const string query = "DELETE FROM \"Post\" WHERE \"PostId\" = @PostId";
+
             using (var connection = _connection.CreateConnection())
             {
                 var rowsAffected = await connection.ExecuteAsync(query, new { PostId = postId });
