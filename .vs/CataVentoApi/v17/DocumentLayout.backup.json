@@ -1,12 +1,37 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Projetos Asp.NET\\CataVentoApi\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|d:\\projetos asp.net\\cataventoapi\\cataventoapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|solutionrelative:cataventoapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\appsettings.json",
+              "RelativeDocumentMoniker": "CataVentoApi\\appsettings.json",
+              "ToolTip": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\appsettings.json",
+              "RelativeToolTip": "CataVentoApi\\appsettings.json",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAswAsAAAB9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-04T19:25:10.833Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
