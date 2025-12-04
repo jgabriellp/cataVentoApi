@@ -38,17 +38,29 @@ namespace CataVentoApi.DataContext
         {
             try
             {
-                // O NpgsqlConnectionStringBuilder deve aceitar o formato URI.
-                // Se falhar aqui, o valor LITERAL está incorreto.
-                var builder = new NpgsqlConnectionStringBuilder(_connectionString);
+                // 1. Cria um objeto Uri com a string lida. Isso remove sujeira e valida o formato.
+                var connectionUri = new Uri(_connectionString);
 
+                // 2. Cria o Npgsql builder USANDO O URI. Este é o método mais robusto.
+                var builder = new NpgsqlConnectionStringBuilder
+                {
+                    Host = connectionUri.Host,
+                    Port = connectionUri.Port,
+                    Database = connectionUri.AbsolutePath.TrimStart('/'),
+                    Username = connectionUri.UserInfo.Split(':')[0],
+                    Password = connectionUri.UserInfo.Split(':')[1],
+                    // Adicione a opção "TargetSessionAttrs" se o erro de autenticação persistir
+                    // TargetSessionAttributes = "read-write", 
+                    Pooling = true
+                };
+
+                // 3. Retorna a conexão com a string traduzida.
                 return new NpgsqlConnection(builder.ConnectionString);
             }
             catch (Exception ex)
             {
-                // Lançamos uma exceção que mostra o valor que falhou no parsing
                 throw new InvalidOperationException(
-                    $"Falha crítica no parsing da string Npgsql. Valor lido: '{_connectionString}'. Verifique a sintaxe da URL URI.", ex);
+                    $"Falha crítica ao criar a conexão Npgsql. String usada: '{_connectionString}'.", ex);
             }
         }
     }
