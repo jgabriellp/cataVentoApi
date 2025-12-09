@@ -24,8 +24,11 @@ namespace CataVentoApi.Services.Service
 
             // 2. Cria o Container Client
             // Assumindo que você está injetando IConfiguration no construtor da sua classe.
-            var connectionString = _configuration["Blob:ConnectionString"];
-            var containerName = _configuration["Blob:ContainerName"];
+            //var connectionString = _configuration["Blob:ConnectionString"];
+            //var containerName = _configuration["Blob:ContainerName"];
+
+            var connectionString = Environment.GetEnvironmentVariable("BLOB_CONNECTION_STRING");
+            var containerName = Environment.GetEnvironmentVariable("BLOB_CONTAINER_NAME");
 
             var container = new BlobContainerClient(connectionString, containerName);
 
@@ -60,30 +63,30 @@ namespace CataVentoApi.Services.Service
         /// <param name="file">O arquivo (imagem) a ser enviado.</param>
         /// <param name="directory">A subpasta lógica (ex: "posts" ou "perfil").</param>
         /// <returns>A URL pública do arquivo armazenado.</returns>
-        public async Task<string> UploadFileAsync(IFormFile file, string directory)
-        {
-            var containerClient = _blobServiceClient.GetBlobContainerClient(_configuration["Blob:ContainerName"]);
+        //public async Task<string> UploadFileAsync(IFormFile file, string directory)
+        //{
+        //    var containerClient = _blobServiceClient.GetBlobContainerClient(_configuration["Blob:ContainerName"]);
 
-            // Cria o container se ele ainda não existir (segurança na primeira execução)
-            await containerClient.CreateIfNotExistsAsync();
+        //    // Cria o container se ele ainda não existir (segurança na primeira execução)
+        //    await containerClient.CreateIfNotExistsAsync();
 
-            // Gera um nome de arquivo único para evitar colisões
-            string fileExtension = Path.GetExtension(file.FileName);
-            string fileName = $"{directory}/{Guid.NewGuid()}{fileExtension}";
+        //    // Gera um nome de arquivo único para evitar colisões
+        //    string fileExtension = Path.GetExtension(file.FileName);
+        //    string fileName = $"{directory}/{Guid.NewGuid()}{fileExtension}";
 
-            // Obtém a referência ao blob (arquivo)
-            BlobClient blobClient = containerClient.GetBlobClient(fileName);
+        //    // Obtém a referência ao blob (arquivo)
+        //    BlobClient blobClient = containerClient.GetBlobClient(fileName);
 
-            // Faz o upload do arquivo a partir do stream
-            using (var stream = file.OpenReadStream())
-            {
-                // Sobrescreve se já existir um arquivo com o mesmo nome
-                await blobClient.UploadAsync(stream, true);
-            }
+        //    // Faz o upload do arquivo a partir do stream
+        //    using (var stream = file.OpenReadStream())
+        //    {
+        //        // Sobrescreve se já existir um arquivo com o mesmo nome
+        //        await blobClient.UploadAsync(stream, true);
+        //    }
 
-            // Retorna a URL pública que deve ser salva no PostgreSQL
-            return blobClient.Uri.ToString();
-        }
+        //    // Retorna a URL pública que deve ser salva no PostgreSQL
+        //    return blobClient.Uri.ToString();
+        //}
 
         /// <summary>
         /// Deleta um arquivo do Azure Blob Storage usando sua URL completa.
@@ -104,7 +107,8 @@ namespace CataVentoApi.Services.Service
             }
 
             // Obtém a referência ao container
-            var containerClient = _blobServiceClient.GetBlobContainerClient(_configuration["Blob:ContainerName"]    );
+            var containerClient = _blobServiceClient.GetBlobContainerClient(Environment.GetEnvironmentVariable("BLOB_CONTAINER_NAME"));
+            //var containerClient = _blobServiceClient.GetBlobContainerClient(_configuration["Blob:ContainerName"]    );
 
             // Extrai o nome do blob (o caminho do arquivo) da URL
             // Exemplo: de "https://suaconta/imagens-catavento/posts/guid.jpg" para "posts/guid.jpg"
