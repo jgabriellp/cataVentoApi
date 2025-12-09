@@ -38,8 +38,7 @@
               "RelativeToolTip": "CataVentoApi\\Services\\Service\\AzureStorageService.cs",
               "ViewState": "AgIAAFkAAAAAAAAAAAAgwG0AAACFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-09T15:26:35.007Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-09T15:26:35.007Z"
             },
             {
               "$type": "Document",
@@ -51,8 +50,7 @@
               "RelativeToolTip": "CataVentoApi\\Program.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAAAAABoAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-06T11:45:04.179Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-06T11:45:04.179Z"
             },
             {
               "$type": "Document",
@@ -62,7 +60,7 @@
               "RelativeDocumentMoniker": "CataVentoApi\\appsettings.json",
               "ToolTip": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\appsettings.json",
               "RelativeToolTip": "CataVentoApi\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-12-04T20:02:23.296Z",
               "EditorCaption": ""
@@ -77,8 +75,7 @@
               "RelativeToolTip": "CataVentoApi\\DataContext\\DapperContext.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAABYAAABTAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-09T02:15:19.514Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-09T02:15:19.514Z"
             }
           ]
         }
