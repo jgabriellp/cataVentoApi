@@ -28,8 +28,9 @@ builder.Services.AddCors(options =>
 
 var blobConnectionString = Environment.GetEnvironmentVariable("BLOB_CONNECTION_STRING");
 
-var storageConnectionString = builder.Configuration["blobConnectionString"];
-builder.Services.AddSingleton(new BlobServiceClient(storageConnectionString));
+//var storageConnectionString = builder.Configuration["Blob:ConnectionString"];
+//builder.Services.AddSingleton(new BlobServiceClient(storageConnectionString));
+builder.Services.AddSingleton(new BlobServiceClient(blobConnectionString));
 
 builder.Services.Configure<CloudinarySettings>(
     builder.Configuration.GetSection("CloudinarySettings"));
