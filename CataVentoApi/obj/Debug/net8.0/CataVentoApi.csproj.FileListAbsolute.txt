@@ -170,3 +170,6 @@ D:\Projetos Asp.NET\CataVentoApi\CataVentoApi\bin\Debug\net8.0\CloudinaryDotNet.
 D:\Projetos Asp.NET\CataVentoApi\CataVentoApi\bin\Debug\net8.0\Newtonsoft.Json.dll
 D:\Projetos Asp.NET\CataVentoApi\CataVentoApi\bin\Debug\net8.0\Npgsql.dll
 D:\Projetos Asp.NET\CataVentoApi\CataVentoApi\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
+D:\Projetos Asp.NET\CataVentoApi\CataVentoApi\bin\Debug\net8.0\Azure.Storage.Blobs.dll
+D:\Projetos Asp.NET\CataVentoApi\CataVentoApi\bin\Debug\net8.0\Azure.Storage.Common.dll
+D:\Projetos Asp.NET\CataVentoApi\CataVentoApi\bin\Debug\net8.0\System.IO.Hashing.dll

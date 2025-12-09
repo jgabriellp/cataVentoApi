@@ -1,4 +1,5 @@
 
+using Azure.Storage.Blobs;
 using CataVentoApi.DataContext;
 using CataVentoApi.Entity;
 using CataVentoApi.Repositories.Interface;
@@ -23,10 +24,14 @@ builder.Services.AddCors(options =>
         });
 });
 
+var storageConnectionString = builder.Configuration["Blob:ConnectionString"];
+builder.Services.AddSingleton(new BlobServiceClient(storageConnectionString));
+
 builder.Services.Configure<CloudinarySettings>(
     builder.Configuration.GetSection("CloudinarySettings"));
 
 builder.Services.AddSingleton<CloudinaryService>();
+builder.Services.AddSingleton<AzureStorageService>();
 
 builder.Services.AddSingleton<DapperContext>();
 

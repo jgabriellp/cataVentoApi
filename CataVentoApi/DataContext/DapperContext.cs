@@ -10,9 +10,15 @@ namespace CataVentoApi.DataContext
     public class DapperContext
     {
         private readonly string _connectionString;
+        // APAGAR
+        //private readonly IConfiguration _configuration;
 
         public DapperContext(IConfiguration configuration)
         {
+            // APAGAR AS PRÓXIMAS DUAS LINHAS
+            //_configuration = configuration;
+            //_connectionString = _configuration.GetConnectionString("PostgresConnection");
+
             // Tenta ler a variável simples e direta do Railway (POSTGRES_URI)
             string railwayUri = Environment.GetEnvironmentVariable("POSTGRES_URI");
 
@@ -36,6 +42,9 @@ namespace CataVentoApi.DataContext
 
         public IDbConnection CreateConnection()
         {
+            // APAGAR ESTE CÓDIGO COMENTADO E DESCOMENTAR O CÓDIGO ABAIXO DEPOIS DE TESTAR NO RAILWAY
+            //return new NpgsqlConnection(_connectionString);
+
             try
             {
                 // 1. Cria um objeto Uri com a string lida. Isso remove sujeira e valida o formato.

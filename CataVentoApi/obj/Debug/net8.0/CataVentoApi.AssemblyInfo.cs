@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CataVentoApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a4b1ce5569f0bec472a1b8a65e2dc096c01076e6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+060e4740abdf42b9697ef89557e6f47a2870b617")]
 [assembly: System.Reflection.AssemblyProductAttribute("CataVentoApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CataVentoApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
