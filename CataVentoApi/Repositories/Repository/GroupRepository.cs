@@ -20,7 +20,8 @@ namespace CataVentoApi.Repositories.Repository
 
         public async Task<IEnumerable<Group>> GetAllGroupsAsync(int pageNumber, int pageSize)
         {
-            const string orderByField = "GroupId";
+            //const string orderByField = "GroupId";
+            const string orderByField = "GroupName";
 
             int offset = (pageNumber - 1) * pageSize;
 
@@ -118,7 +119,8 @@ namespace CataVentoApi.Repositories.Repository
                 SELECT g.""GroupId"", g.""GroupName"" 
                 FROM ""Group"" g
                 INNER JOIN ""UsuarioGroup"" ug ON g.""GroupId"" = ug.""GroupId""
-                WHERE ug.""UsuarioId"" = @UserId";
+                WHERE ug.""UsuarioId"" = @UserId
+                ORDER BY g.""GroupName"" ASC";
 
             const string assocQuery = @"
                 SELECT ""UsuarioId"" 

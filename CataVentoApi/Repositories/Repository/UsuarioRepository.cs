@@ -16,7 +16,7 @@ namespace CataVentoApi.Repositories.Repository
 
         public async Task<IEnumerable<Usuario>> GetAll(int pageNumber, int pageSize)
         {
-            const string orderByField = "Id";
+            const string orderByField = "Name";
 
             int offset = (pageNumber - 1) * pageSize;
 
