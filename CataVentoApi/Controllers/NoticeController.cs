@@ -51,6 +51,7 @@ namespace CataVentoApi.Controllers
         public async Task<IActionResult> CreateNotice([FromBody] NoticeResquestDto noticeResquestDto)
         {
             var noticeId = await _noticeService.AddNoticeAsync(noticeResquestDto);
+            if(noticeId == 0) return BadRequest("Error creating notice.");
             return CreatedAtAction(nameof(GetNoticeById), new { id = noticeId }, noticeResquestDto);
         }
 

@@ -40,7 +40,7 @@ namespace CataVentoApi.Repositories.Repository
 
         public async Task<Notice> GetByIdAsync(long noticeId)
         {
-            const string query = "SELECT * FROM Notice WHERE NoticeId = @NoticeId";
+            const string query = @"SELECT * FROM ""Notice"" WHERE ""NoticeId"" = @NoticeId"; ;
 
             using (var connection = _connection.CreateConnection())
             {
@@ -68,10 +68,9 @@ namespace CataVentoApi.Repositories.Repository
             int offset = (pageNumber - 1) * pageSize;
 
             const string query = @"
-                SELECT * FROM Notice
-                ORDER BY DateCreated DESC
-                OFFSET @Offset ROWS
-                FETCH NEXT @PageSize ROWS ONLY;";
+                SELECT * FROM ""Notice""
+                ORDER BY ""DateCreated"" DESC
+                LIMIT @PageSize OFFSET @Offset;";
 
             using (var connection = _connection.CreateConnection())
             {
@@ -92,11 +91,10 @@ namespace CataVentoApi.Repositories.Repository
             int offset = (pageNumber - 1) * pageSize;
 
             const string query = @"
-                SELECT * FROM Notice
-                WHERE IsActive = 1
-                ORDER BY DateCreated DESC
-                OFFSET @Offset ROWS
-                FETCH NEXT @PageSize ROWS ONLY;";
+                SELECT * FROM ""Notice""
+                WHERE ""IsActive"" = TRUE
+                ORDER BY ""DateCreated"" DESC
+                LIMIT @PageSize OFFSET @Offset;";
 
             using (var connection = _connection.CreateConnection())
             {
@@ -117,11 +115,10 @@ namespace CataVentoApi.Repositories.Repository
             int offset = (pageNumber - 1) * pageSize;
 
             const string query = @"
-                SELECT * FROM Notice
-                WHERE CreatorId = @CreatorId
-                ORDER BY DateCreated DESC
-                OFFSET @Offset ROWS
-                FETCH NEXT @PageSize ROWS ONLY;";
+                SELECT * FROM ""Notice""
+                WHERE ""CreatorId"" = @CreatorId
+                ORDER BY ""DateCreated"" DESC
+                LIMIT @PageSize OFFSET @Offset;";
 
             using (var connection = _connection.CreateConnection())
             {
@@ -139,18 +136,18 @@ namespace CataVentoApi.Repositories.Repository
 
         public async Task<IEnumerable<Notice>> GetFilteredAsync(string? title, bool? isActive)
         {
-            var sql = "SELECT * FROM Notice WHERE 1=1";
+            var sql = @"SELECT * FROM ""Notice"" WHERE 1=1";
             var parameters = new DynamicParameters();
 
             if (!string.IsNullOrWhiteSpace(title))
             {
-                sql += " AND Title LIKE @Title";
+                sql += @" AND ""Title"" ILIKE @Title";
                 parameters.Add("Title", $"%{title}%");
             }
 
             if (isActive.HasValue)
             {
-                sql += " AND IsActive = @IsActive";
+                sql += @" AND ""IsActive"" = @IsActive";
                 parameters.Add("IsActive", isActive.Value);
             }
 
@@ -173,9 +170,9 @@ namespace CataVentoApi.Repositories.Repository
         public async Task<long> AddAsync(Notice notice)
         {
             const string query = @"
-                INSERT INTO Notice (Title, Content, IsActive, DateCreated, PhotoUrl, CreatorId)
-                VALUES (@Title, @Content, @IsActive, @DateCreated, @PhotoUrl, @CreatorId);
-                SELECT CAST(SCOPE_IDENTITY() as bigint);";
+                INSERT INTO ""Notice"" (""Title"", ""Content"", ""IsActive"", ""DateCreated"", ""PhotoUrl"", ""CreatorId"")
+                VALUES (@Title, @Content, @IsActive, @DateCreated, @PhotoUrl, @CreatorId)
+                RETURNING ""NoticeId"";";
 
             using (var connection = _connection.CreateConnection())
             {
@@ -192,7 +189,13 @@ namespace CataVentoApi.Repositories.Repository
                         var rolesToAdd = notice.Audiences.Select(a => a.AudienceRole).Distinct();
                         if (rolesToAdd.Any())
                         {
-                            await _audienceRepository.AddAudiencesAsync(noticeId, rolesToAdd);
+                            //await _audienceRepository.AddAudiencesAsync(noticeId, rolesToAdd);
+                            await _audienceRepository.AddAudiencesAsync(
+                                noticeId,
+                                rolesToAdd,
+                                connection,
+                                transaction
+                            );
                         }
 
                         transaction.Commit();
@@ -210,12 +213,12 @@ namespace CataVentoApi.Repositories.Repository
         public async Task<bool> UpdateAsync(Notice notice)
         {
             const string query = @"
-                UPDATE Notice
-                SET Title = @Title,
-                    Content = @Content,
-                    IsActive = @IsActive,
-                    PhotoUrl = @PhotoUrl
-                WHERE NoticeId = @NoticeId;";
+                UPDATE ""Notice""
+                SET ""Title"" = @Title,
+                    ""Content"" = @Content,
+                    ""IsActive"" = @IsActive,
+                    ""PhotoUrl"" = @PhotoUrl
+                WHERE ""NoticeId"" = @NoticeId;";
 
             using (var connection = _connection.CreateConnection())
             {
@@ -235,7 +238,7 @@ namespace CataVentoApi.Repositories.Repository
                         var rolesToAdd = notice.Audiences.Select(a => a.AudienceRole).Distinct();
                         if (rolesToAdd.Any())
                         {
-                            await _audienceRepository.AddAudiencesAsync(notice.NoticeId, rolesToAdd);
+                            await _audienceRepository.AddAudiencesAsync(notice.NoticeId, rolesToAdd, connection, transaction);
                         }
 
                         transaction.Commit();
@@ -254,7 +257,7 @@ namespace CataVentoApi.Repositories.Repository
         {
             // O DELETE CASCADE no SQL deve cuidar da tabela NoticeAudience, mas
             // deletar o Notice principal é o suficiente.
-            const string query = "DELETE FROM Notice WHERE NoticeId = @NoticeId";
+            const string query = @"DELETE FROM ""Notice"" WHERE ""NoticeId"" = @NoticeId";
 
             using (var connection = _connection.CreateConnection())
             {
