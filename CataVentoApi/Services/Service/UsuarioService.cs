@@ -51,7 +51,7 @@ namespace CataVentoApi.Services.Service
                 {
                     new Claim(ClaimTypes.Email, user.Result.Email),
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(60),
+                Expires = DateTime.UtcNow.AddMinutes(720),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
