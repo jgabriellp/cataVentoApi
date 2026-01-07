@@ -26,7 +26,8 @@ namespace CataVentoApi.Repositories.Repository
 
                 var sqlUsersPaged = $@"
                     SELECT ""Id"", ""Name"", ""LastName"", ""Role"", ""Email"", ""Password"", ""PhotoUrl"" 
-                    FROM ""Usuario"" 
+                    FROM ""Usuario""
+                    WHERE ""IsDeleted"" = FALSE
                     ORDER BY ""{orderByField}"" ASC  -- Usamos ""{orderByField}""
                     LIMIT @PageSize OFFSET @Offset;  -- MUDANÇA CRÍTICA para PostgreSQL
                 ";
@@ -63,7 +64,7 @@ namespace CataVentoApi.Repositories.Repository
 
         public async Task<IEnumerable<Usuario>> GetAll()
         {
-            const string query = "SELECT * FROM \"Usuario\"";
+            const string query = "SELECT * FROM \"Usuario\" WHERE \"IsDeleted\" = FALSE";
 
             const string queryAssociations = "SELECT \"UsuarioId\", \"GroupId\" FROM \"UsuarioGroup\"";
 
@@ -96,7 +97,7 @@ namespace CataVentoApi.Repositories.Repository
                 SELECT u.""Id"", u.""Name"", u.""LastName"", u.""Role"", u.""Email"", u.""Password"", u.""PhotoUrl"" -- Seleção explícita de colunas com ""
                 FROM ""Usuario"" u
                 INNER JOIN ""UsuarioGroup"" ug ON u.""Id"" = ug.""UsuarioId""
-                WHERE ug.""GroupId"" = @GroupId";
+                WHERE ug.""GroupId"" = @GroupId AND ""IsDeleted"" = FALSE";
 
             const string queryAssociations = @"
                 SELECT ""GroupId"" -- Seleciona apenas o GroupId, que é um INT
@@ -119,7 +120,7 @@ namespace CataVentoApi.Repositories.Repository
 
         public async Task<IEnumerable<Usuario>> GetByName(string name)
         {
-            const string query = "SELECT * FROM \"Usuario\" WHERE \"Name\" ILIKE @NamePattern";
+            const string query = "SELECT * FROM \"Usuario\" WHERE \"Name\" ILIKE @NamePattern AND \"IsDeleted\" = FALSE";
 
             using (var connection = _connection.CreateConnection())
             {
@@ -158,7 +159,7 @@ namespace CataVentoApi.Repositories.Repository
 
         public async Task<Usuario> GetByEmail(string email)
         {
-            const string query = "SELECT * FROM \"Usuario\" WHERE \"Email\" = @Email";
+            const string query = "SELECT * FROM \"Usuario\" WHERE \"Email\" = @Email AND \"IsDeleted\" = FALSE";
 
             const string queryAssociations = "SELECT \"GroupId\" FROM \"UsuarioGroup\" WHERE \"UsuarioId\" = @UsuarioId";
 
@@ -179,7 +180,7 @@ namespace CataVentoApi.Repositories.Repository
 
         public async Task<Usuario> GetById(long id)
         {
-            const string query = "SELECT * FROM \"Usuario\" WHERE \"Id\" = @Id";
+            const string query = "SELECT * FROM \"Usuario\" WHERE \"Id\" = @Id AND \"IsDeleted\" = FALSE";
 
             const string queryAssociations = "SELECT \"GroupId\" FROM \"UsuarioGroup\" WHERE \"UsuarioId\" = @UsuarioId";
 
@@ -233,13 +234,68 @@ namespace CataVentoApi.Repositories.Repository
 
         public async Task<bool> DeleteAsync(long id)
         {
-            const string query = "DELETE FROM \"Usuario\" WHERE \"Id\" = @Id";
+            // 1. SQL para a Exclusão Lógica do Usuário
+            const string sqlSoftDeleteUser = @"
+                UPDATE ""Usuario"" 
+                SET ""IsDeleted"" = TRUE 
+                WHERE ""Id"" = @Id";
+
+            // 2. SQL para remover o usuário de todos os grupos (Exclusão Física do vínculo)
+            const string sqlRemoveFromGroups = @"
+                DELETE FROM ""UsuarioGroup"" 
+                WHERE ""UsuarioId"" = @Id";
 
             using (var connection = _connection.CreateConnection())
             {
-                var affectedRows = await connection.ExecuteAsync(query, new { Id = id });
-                return affectedRows > 0;
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        // Executa a remoção dos grupos primeiro (limpeza)
+                        await connection.ExecuteAsync(sqlRemoveFromGroups, new { Id = id }, transaction);
+
+                        // Executa a exclusão lógica do usuário
+                        var rowsAffected = await connection.ExecuteAsync(sqlSoftDeleteUser, new { Id = id }, transaction);
+
+                        // Se tudo deu certo, confirma as alterações no banco
+                        transaction.Commit();
+
+                        return rowsAffected > 0;
+                    }
+                    catch (Exception)
+                    {
+                        // Se algo falhar (ex: erro de rede), desfaz tudo para não deixar os dados inconsistentes
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
             }
         }
+
+        //public async Task<bool> DeleteAsync(long id)
+        //{
+        //    const string query = "DELETE FROM \"Usuario\" WHERE \"Id\" = @Id";
+
+        //    using (var connection = _connection.CreateConnection())
+        //    {
+        //        var affectedRows = await connection.ExecuteAsync(query, new { Id = id });
+        //        return affectedRows > 0;
+        //    }
+        //}
+        //public async Task<bool> DeleteAsync(long id)
+        //{
+        //    // Em vez de apagar, apenas "marcamos" como excluído
+        //    const string sql = @"
+        //        UPDATE ""Usuario"" 
+        //        SET ""IsDeleted"" = TRUE 
+        //        WHERE ""Id"" = @Id";
+
+        //    using (var connection = _connection.CreateConnection())
+        //    {
+        //        var rowsAffected = await connection.ExecuteAsync(sql, new { Id = id });
+        //        return rowsAffected > 0;
+        //    }
+        //}
     }
 }

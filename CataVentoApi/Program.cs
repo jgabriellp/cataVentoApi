@@ -60,6 +60,9 @@ builder.Services.AddScoped<INoticeService, NoticeService>();
 builder.Services.AddScoped<INoticeAudienceRepository, NoticeAudienceRepository>();
 //builder.Services.AddScoped<INoticeAudienceService, NoticeAudienceService>();
 
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddScoped<ITaskService, TaskService>();
+
 var jwtKey = builder.Configuration["Jwt:Key"];
 var keyBytes = Encoding.UTF8.GetBytes(jwtKey);
 
