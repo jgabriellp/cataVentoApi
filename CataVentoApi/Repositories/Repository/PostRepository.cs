@@ -55,6 +55,30 @@ namespace CataVentoApi.Repositories.Repository
             }
         }
 
+        public async Task<IEnumerable<Post>> GetPostsByGroupIdAndDateAsync(long groupId, DateTime startDate, DateTime endDate)
+        {
+            const string query = @"
+                SELECT * FROM ""Post"" 
+                WHERE ""GroupId"" = @GroupId 
+                AND ""Date"" BETWEEN @StartDate AND @EndDate
+                ORDER BY ""Date"" DESC;";
+
+            using (var connection = _connection.CreateConnection())
+            {
+                var posts = await connection.QueryAsync<Post>(
+                    query,
+                    new
+                    {
+                        GroupId = groupId,
+                        StartDate = startDate,
+                        EndDate = endDate
+                    }
+                );
+
+                return posts;
+            }
+        }
+
         public async Task<IEnumerable<Post>> GetPostsByGroupIdAsync(long groupId, int pageNumber, int pageSize)
         {
             int offset = (pageNumber - 1) * pageSize;

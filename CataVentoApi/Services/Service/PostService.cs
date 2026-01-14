@@ -1,4 +1,5 @@
-﻿using CataVentoApi.Entity;
+﻿
+using CataVentoApi.Entity;
 using CataVentoApi.Entity.Dto.RequestDto;
 using CataVentoApi.Repositories.Interface;
 using CataVentoApi.Repositories.Repository;
@@ -159,6 +160,36 @@ namespace CataVentoApi.Services.Service
             }
 
             return await _postRepository.DeletePostAsync(postId);
+        }
+
+        public async Task<IEnumerable<Post>> GetPostsByGroupIdAndDateAsync(long groupId, DateTime startDate, DateTime endDate)
+        {
+            var posts = await _postRepository.GetPostsByGroupIdAndDateAsync(groupId, startDate, endDate);
+
+            if (!posts.Any()) return Enumerable.Empty<Post>();
+
+            var postIds = posts.Select(p => p.PostId).ToList();
+
+            var comments = await _commentRepository.GetCommentsByPostIdsAsync(postIds);
+
+            var likers = await _postLikerRepository.GetLikersByPostIdsAsync(postIds);
+
+            var commentLookup = comments
+                .ToLookup(c => c.PostId, c => c.CommentId);
+
+            var likersLookup = likers
+                .ToLookup(l => l.PostId, l => l.UsuarioId);
+
+            foreach (var post in posts)
+            {
+                // Liga os Comentários
+                post.CommentsIds = commentLookup[post.PostId].ToList();
+                // Liga os Likes
+                post.LikersIds = likersLookup[post.PostId].ToList();
+            }
+
+            return posts;
+
         }
     }
 }

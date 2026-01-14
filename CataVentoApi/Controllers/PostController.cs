@@ -48,6 +48,13 @@ namespace CataVentoApi.Controllers
             return Ok(posts);
         }
 
+        [HttpGet("group/{groupId}/date")]
+        public async Task<IActionResult> GetPostsByGroupIdAndDateAsync(long groupId, [FromQuery] DateTime startDate, [FromQuery] DateTime endDate)
+        {
+            var posts = await _postService.GetPostsByGroupIdAndDateAsync(groupId, startDate, endDate);
+            return Ok(posts);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreatePost([FromBody] PostRequestDto postRequestDto)
         {
