@@ -11,39 +11,39 @@ namespace CataVentoApi.DataContext
     {
         private readonly string _connectionString;
         // APAGAR
-        private readonly IConfiguration _configuration;
+        //private readonly IConfiguration _configuration;
 
         public DapperContext(IConfiguration configuration)
         {
             // APAGAR AS PRÓXIMAS DUAS LINHAS
-            _configuration = configuration;
-            _connectionString = _configuration.GetConnectionString("PostgresConnection");
+            //_configuration = configuration;
+            //_connectionString = _configuration.GetConnectionString("PostgresConnection");
 
-            //// Tenta ler a variável simples e direta do Railway (POSTGRES_URI)
-            //string railwayUri = Environment.GetEnvironmentVariable("POSTGRES_URI");
+            // Tenta ler a variável simples e direta do Railway (POSTGRES_URI)
+            string railwayUri = Environment.GetEnvironmentVariable("POSTGRES_URI");
 
-            //if (!string.IsNullOrEmpty(railwayUri))
-            //{
-            //    // Prioriza o URI do Railway
-            //    _connectionString = railwayUri;
-            //}
-            //else
-            //{
-            //    // Se não estiver no Railway, usa a string do appsettings.
-            //    _connectionString = configuration.GetConnectionString("PostgresConnection");
-            //}
+            if (!string.IsNullOrEmpty(railwayUri))
+            {
+                // Prioriza o URI do Railway
+                _connectionString = railwayUri;
+            }
+            else
+            {
+                // Se não estiver no Railway, usa a string do appsettings.
+                _connectionString = configuration.GetConnectionString("PostgresConnection");
+            }
 
-            //// Verificação crítica para o log: se a string é nula, lançamos uma exceção clara.
-            //if (string.IsNullOrEmpty(_connectionString))
-            //{
-            //    throw new InvalidOperationException("ERRO: A Connection String está VAZIA. Verifique as variáveis de ambiente POSTGRES_URI e/ou appsettings.json.");
-            //}
+            // Verificação crítica para o log: se a string é nula, lançamos uma exceção clara.
+            if (string.IsNullOrEmpty(_connectionString))
+            {
+                throw new InvalidOperationException("ERRO: A Connection String está VAZIA. Verifique as variáveis de ambiente POSTGRES_URI e/ou appsettings.json.");
+            }
         }
 
         public IDbConnection CreateConnection()
         {
             // APAGAR ESTE CÓDIGO COMENTADO E DESCOMENTAR O CÓDIGO ABAIXO DEPOIS DE TESTAR NO RAILWAY
-            return new NpgsqlConnection(_connectionString);
+            //return new NpgsqlConnection(_connectionString);
 
             try
             {
