@@ -57,7 +57,7 @@ namespace CataVentoApi.Repositories.Repository
 
         public async Task<Post?> GetPostByContentAsync(string content)
         {
-            const string query = "SELECT * FROM \"Post\" WHERE \"Content\" = @Content";
+            const string query = "SELECT * FROM \"Post\" WHERE \"Content\" ILIKE @Content";
 
             const string sqlAssociations = @"
                 SELECT 
@@ -67,13 +67,13 @@ namespace CataVentoApi.Repositories.Repository
                 FROM ""Post"" P
                 LEFT JOIN ""PostLiker"" L ON P.""PostId"" = L.""PostId""
                 LEFT JOIN ""Comment"" C ON P.""PostId"" = C.""PostId""
-                WHERE P.""Content"" = @Content";
+                WHERE P.""Content"" ILIKE @Content";
 
             using (var connection = _connection.CreateConnection())
             {
-                var post = await connection.QueryFirstOrDefaultAsync<Post>(query, new { Content = content });
+                var post = await connection.QueryFirstOrDefaultAsync<Post>(query, new { Content = $"%{content}%" });
 
-                var associations = await connection.QueryAsync<dynamic>(sqlAssociations, new { Content = content });
+                var associations = await connection.QueryAsync<dynamic>(sqlAssociations, new { Content = $"%{content}%" });
 
                 if (post != null)
                 {

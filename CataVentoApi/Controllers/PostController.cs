@@ -28,7 +28,7 @@ namespace CataVentoApi.Controllers
             return Ok(post);
         }
 
-        [HttpGet("content")]
+        [HttpGet("search-by-content")]
         public async Task<IActionResult> GetPostByContent([FromQuery] string content)
         {
             var post = await _postService.GetPostByContentAsync(content);
