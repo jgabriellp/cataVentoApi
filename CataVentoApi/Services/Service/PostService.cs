@@ -160,6 +160,17 @@ namespace CataVentoApi.Services.Service
             return await _postRepository.UpdatePostAsync(updatePost);
         }
 
+        public async Task<bool> PatchPostImageUrlAsync(long postId, string imageUrl)
+        {
+            var existingPost = await _postRepository.GetPostByIdAsync(postId);
+            if (existingPost == null)
+            {
+                return false;
+            }
+            existingPost.ImageUrl = imageUrl;
+            return await _postRepository.UpdatePostAsync(existingPost);
+        }
+
         public async Task<bool> DeletePostAsync(long postId)
         {
             var existingPost = await _postRepository.GetPostByIdAsync(postId);

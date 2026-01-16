@@ -12,6 +12,7 @@ namespace CataVentoApi.Services.Interface
         Task<IEnumerable<Post>> GetPostsByUserIdAsync(long userId, int pageNumber, int pageSize);
         Task<Post> CreatePostAsync(PostRequestDto postRequestDto);
         Task<bool> UpdatePostAsync(long postId, PostRequestDto postRequestDto);
+        Task<bool> PatchPostImageUrlAsync(long postId, string imageUrl);
         Task<bool> DeletePostAsync(long postId);
     }
 }

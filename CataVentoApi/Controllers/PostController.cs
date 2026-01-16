@@ -88,6 +88,17 @@ namespace CataVentoApi.Controllers
             return NoContent();
         }
 
+        [HttpPatch("{postId}/image")]
+        public async Task<IActionResult> PatchPostImageUrl(long postId, [FromBody] string imageUrl)
+        {
+            var result = await _postService.PatchPostImageUrlAsync(postId, imageUrl);
+            if (!result)
+            {
+                return NotFound("Post not found.");
+            }
+            return NoContent();
+        }
+
         [HttpDelete("{postId}")]
         public async Task<IActionResult> DeletePost(long postId)
         {
