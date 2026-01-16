@@ -149,7 +149,7 @@ namespace CataVentoApi.Repositories.Repository
 
             using (var connection = _connection.CreateConnection())
             {
-                var group = await connection.QueryFirstOrDefaultAsync<Group>(query, new { GroupName = groupName });
+                var group = await connection.QueryFirstOrDefaultAsync<Group>(query, new { GroupName = $"%{groupName}%" });
 
                 if (group == null)
                     return null;

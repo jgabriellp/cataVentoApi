@@ -38,6 +38,16 @@ namespace CataVentoApi.Services.Service
             return post;
         }
 
+        public async Task<Post?> GetPostByContentAsync(string content)
+        {
+            var post = await _postRepository.GetPostByContentAsync(content);
+            if (post == null)
+            {
+                return null;
+            }
+            return post;
+        }
+
         public async Task<IEnumerable<Post>> GetPostsByUserIdAsync(long userId, int pageNumber, int pageSize)
         {
             if (pageNumber < 1) pageNumber = 1;

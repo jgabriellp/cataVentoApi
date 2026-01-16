@@ -55,6 +55,45 @@ namespace CataVentoApi.Repositories.Repository
             }
         }
 
+        public async Task<Post?> GetPostByContentAsync(string content)
+        {
+            const string query = "SELECT * FROM \"Post\" WHERE \"Content\" = @Content";
+
+            const string sqlAssociations = @"
+                SELECT 
+                    P.*,
+                    L.""UsuarioId"" AS LikersIds,
+                    C.""CommentId"" AS CommentsIds
+                FROM ""Post"" P
+                LEFT JOIN ""PostLiker"" L ON P.""PostId"" = L.""PostId""
+                LEFT JOIN ""Comment"" C ON P.""PostId"" = C.""PostId""
+                WHERE P.""Content"" = @Content";
+
+            using (var connection = _connection.CreateConnection())
+            {
+                var post = await connection.QueryFirstOrDefaultAsync<Post>(query, new { Content = content });
+
+                var associations = await connection.QueryAsync<dynamic>(sqlAssociations, new { Content = content });
+
+                if (post != null)
+                {
+                    post.LikersIds = associations
+                        .Where(a => a.likersids != null)
+                        .Select(a => (long)a.likersids)
+                        .Distinct()
+                        .ToList();
+
+                    post.CommentsIds = associations
+                        .Where(a => a.commentsids != null)
+                        .Select(a => (long)a.commentsids)
+                        .Distinct()
+                        .ToList();
+                }
+
+                return post;
+            }
+        }
+
         public async Task<IEnumerable<Post>> GetPostsByGroupIdAndDateAsync(long groupId, DateTime startDate, DateTime endDate)
         {
             const string query = @"

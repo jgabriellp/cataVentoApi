@@ -28,6 +28,17 @@ namespace CataVentoApi.Controllers
             return Ok(post);
         }
 
+        [HttpGet("content")]
+        public async Task<IActionResult> GetPostByContent([FromQuery] string content)
+        {
+            var post = await _postService.GetPostByContentAsync(content);
+            if (post == null)
+            {
+                return NotFound("Post not found.");
+            }
+            return Ok(post);
+        }
+
         [HttpGet("user/{userId}")]
         public async Task<IActionResult> GetPostsByUserId(
             long userId, 

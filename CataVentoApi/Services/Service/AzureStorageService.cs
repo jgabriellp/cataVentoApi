@@ -24,11 +24,11 @@ namespace CataVentoApi.Services.Service
 
             // 2. Cria o Container Client
             // Assumindo que você está injetando IConfiguration no construtor da sua classe.
-            //var connectionString = _configuration["Blob:ConnectionString"];
-            //var containerName = _configuration["Blob:ContainerName"];
+            var connectionString = _configuration["Blob:ConnectionString"];
+            var containerName = _configuration["Blob:ContainerName"];
 
-            var connectionString = Environment.GetEnvironmentVariable("BLOB_CONNECTION_STRING");
-            var containerName = Environment.GetEnvironmentVariable("BLOB_CONTAINER_NAME");
+            //var connectionString = Environment.GetEnvironmentVariable("BLOB_CONNECTION_STRING");
+            //var containerName = Environment.GetEnvironmentVariable("BLOB_CONTAINER_NAME");
 
             var container = new BlobContainerClient(connectionString, containerName);
 
@@ -58,8 +58,8 @@ namespace CataVentoApi.Services.Service
             }
 
             // Obtém a referência ao container
-            var containerClient = _blobServiceClient.GetBlobContainerClient(Environment.GetEnvironmentVariable("BLOB_CONTAINER_NAME"));
-            //var containerClient = _blobServiceClient.GetBlobContainerClient(_configuration["Blob:ContainerName"]    );
+            //var containerClient = _blobServiceClient.GetBlobContainerClient(Environment.GetEnvironmentVariable("BLOB_CONTAINER_NAME"));
+            var containerClient = _blobServiceClient.GetBlobContainerClient(_configuration["Blob:ContainerName"]    );
 
             // Extrai o nome do blob (o caminho do arquivo) da URL
             // Exemplo: de "https://suaconta/imagens-catavento/posts/guid.jpg" para "posts/guid.jpg"
