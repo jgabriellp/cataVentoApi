@@ -3,28 +3,20 @@
   "WorkspaceRootPath": "D:\\Projetos Asp.NET\\CataVentoApi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|d:\\projetos asp.net\\cataventoapi\\cataventoapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|solutionrelative:cataventoapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|d:\\projetos asp.net\\cataventoapi\\cataventoapi\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|solutionrelative:cataventoapi\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|d:\\projetos asp.net\\cataventoapi\\cataventoapi\\services\\service\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|solutionrelative:cataventoapi\\services\\service\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|d:\\projetos asp.net\\cataventoapi\\cataventoapi\\repositories\\repository\\taskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|solutionrelative:cataventoapi\\repositories\\repository\\taskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|d:\\projetos asp.net\\cataventoapi\\cataventoapi\\datacontext\\dappercontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|solutionrelative:cataventoapi\\datacontext\\dappercontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|d:\\projetos asp.net\\cataventoapi\\cataventoapi\\services\\service\\azurestorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|solutionrelative:cataventoapi\\services\\service\\azurestorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|d:\\projetos asp.net\\cataventoapi\\cataventoapi\\datacontext\\dappercontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|solutionrelative:cataventoapi\\datacontext\\dappercontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|d:\\projetos asp.net\\cataventoapi\\cataventoapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3333ABB0-AFE8-44F4-92F7-5DA90D868A06}|CataVentoApi\\CataVentoApi.csproj|solutionrelative:cataventoapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,82 +26,56 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "TaskController.cs",
               "DocumentMoniker": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Controllers\\TaskController.cs",
               "RelativeDocumentMoniker": "CataVentoApi\\Controllers\\TaskController.cs",
               "ToolTip": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Controllers\\TaskController.cs",
               "RelativeToolTip": "CataVentoApi\\Controllers\\TaskController.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAYwBkAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-10T20:27:25.181Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TaskService.cs",
-              "DocumentMoniker": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Services\\Service\\TaskService.cs",
-              "RelativeDocumentMoniker": "CataVentoApi\\Services\\Service\\TaskService.cs",
-              "ToolTip": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Services\\Service\\TaskService.cs",
-              "RelativeToolTip": "CataVentoApi\\Services\\Service\\TaskService.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAYwBIAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-10T20:27:05.737Z",
+              "WhenOpened": "2026-02-11T21:29:33.97Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "TaskRepository.cs",
-              "DocumentMoniker": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Repositories\\Repository\\TaskRepository.cs",
-              "RelativeDocumentMoniker": "CataVentoApi\\Repositories\\Repository\\TaskRepository.cs",
-              "ToolTip": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Repositories\\Repository\\TaskRepository.cs",
-              "RelativeToolTip": "CataVentoApi\\Repositories\\Repository\\TaskRepository.cs",
-              "ViewState": "AgIAAIkAAAAAAAAAAAAswBIAAABUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-10T20:26:36.931Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Program.cs",
               "RelativeDocumentMoniker": "CataVentoApi\\Program.cs",
               "ToolTip": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Program.cs",
               "RelativeToolTip": "CataVentoApi\\Program.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAowCcAAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAowBwAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-06T11:45:04.179Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "AzureStorageService.cs",
               "DocumentMoniker": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Services\\Service\\AzureStorageService.cs",
               "RelativeDocumentMoniker": "CataVentoApi\\Services\\Service\\AzureStorageService.cs",
               "ToolTip": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\Services\\Service\\AzureStorageService.cs",
               "RelativeToolTip": "CataVentoApi\\Services\\Service\\AzureStorageService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD0AAAByAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBsAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-16T00:00:08.093Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "DapperContext.cs",
               "DocumentMoniker": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\DataContext\\DapperContext.cs",
               "RelativeDocumentMoniker": "CataVentoApi\\DataContext\\DapperContext.cs",
               "ToolTip": "D:\\Projetos Asp.NET\\CataVentoApi\\CataVentoApi\\DataContext\\DapperContext.cs",
               "RelativeToolTip": "CataVentoApi\\DataContext\\DapperContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA0AAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-09T02:15:19.514Z",
               "EditorCaption": ""

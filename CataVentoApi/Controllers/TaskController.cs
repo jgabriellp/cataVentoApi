@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CataVentoApi.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class TaskController : ControllerBase
