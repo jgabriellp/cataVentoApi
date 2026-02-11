@@ -19,7 +19,7 @@ builder.Services.AddCors(options =>
         builder =>
         {
             builder.WithOrigins("*")
-                   .AllowAnyHeader()  // Permite qualquer cabeçalho na requisição
+                   .AllowAnyHeader()  // Permite qualquer cabeï¿½alho na requisiï¿½ï¿½o
                    .AllowAnyMethod(); // Permite GET, POST, PUT, DELETE, etc.
         });
 });
@@ -36,6 +36,8 @@ builder.Services.Configure<CloudinarySettings>(
 
 builder.Services.AddSingleton<CloudinaryService>();
 builder.Services.AddSingleton<AzureStorageService>();
+
+Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
 
 builder.Services.AddSingleton<DapperContext>();
 
@@ -68,7 +70,7 @@ var keyBytes = Encoding.UTF8.GetBytes(jwtKey);
 
 builder.Services.AddAuthentication(options =>
 {
-    // Define o JWT Bearer como o esquema padrão para Autenticar e Desafiar
+    // Define o JWT Bearer como o esquema padrï¿½o para Autenticar e Desafiar
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
@@ -99,7 +101,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    // Define o esquema de segurança (Bearer JWT)
+    // Define o esquema de seguranï¿½a (Bearer JWT)
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -110,7 +112,7 @@ builder.Services.AddSwaggerGen(c =>
         Description = "Insira o token JWT no formato: Bearer SEU_TOKEN_AQUI",
     });
 
-    // Aplica o requisito de segurança globalmente (para o botão funcionar)
+    // Aplica o requisito de seguranï¿½a globalmente (para o botï¿½o funcionar)
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {

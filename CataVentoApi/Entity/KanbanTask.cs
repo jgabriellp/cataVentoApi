@@ -13,5 +13,6 @@ namespace CataVentoApi.Entity
         public KanbanTaskStatusEnum Status { get; set; }
         public int Position { get; set; }
         public UsuarioResponsavel? Responsavel { get; set; }
+        public KanbanBoardTypeEnum BoardType { get; set; }
     }
 }

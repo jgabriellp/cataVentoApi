@@ -20,9 +20,9 @@ namespace CataVentoApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllTasks()
+        public async Task<IActionResult> GetAllTasks([FromQuery] KanbanBoardTypeEnum boardType)
         {
-            var tasks = await _taskService.GetAllTasks();
+            var tasks = await _taskService.GetAllTasks(boardType);
             return Ok(tasks);
         }
 

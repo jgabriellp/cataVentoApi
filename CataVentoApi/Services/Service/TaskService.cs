@@ -37,8 +37,8 @@ namespace CataVentoApi.Services.Service
             return task;
         }
 
-        public async Task<IEnumerable<KanbanTask>> GetAllTasks() 
-            => await _taskRepository.GetAllTasksAsync();
+        public async Task<IEnumerable<KanbanTask>> GetAllTasks(KanbanBoardTypeEnum boardType)
+            => await _taskRepository.GetAllTasksAsync(boardType);
 
         public async Task<bool> ReorderTasks(List<UpdatePriorityRequestDto> tasks)
             => await _taskRepository.ReorderTasksAsync(tasks);

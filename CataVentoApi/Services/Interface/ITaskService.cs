@@ -8,7 +8,7 @@ namespace CataVentoApi.Services.Interface
     {
         Task<int> CreateTask(KanbanTask task);
         Task<KanbanTask?> GetTaskById(int id);
-        Task<IEnumerable<KanbanTask>> GetAllTasks();
+        Task<IEnumerable<KanbanTask>> GetAllTasks(KanbanBoardTypeEnum boardType);
         Task<bool> UpdateTask(KanbanTask task);
         Task<bool> UpdateColumn(int id, KanbanTaskStatusEnum newStatus, int newPosition);
         Task<bool> ReorderTasks(List<UpdatePriorityRequestDto> tasks);

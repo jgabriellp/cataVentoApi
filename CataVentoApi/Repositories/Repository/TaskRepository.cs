@@ -21,30 +21,30 @@ namespace CataVentoApi.Repositories.Repository
         {
             using (var connection = _connection.CreateConnection())
             {
-                // 1. Garantimos que o Status seja tratado como INT explicitamente para a query de posição
-                const string sqlPos = @"SELECT COALESCE(MAX(position), 0) + 1 FROM tasks WHERE status = @Status";
+                const string sqlPos = @"SELECT COALESCE(MAX(position), 0) + 1 FROM tasks WHERE status = @Status AND board_type = @BoardType";
 
-                // Usamos dynamic para evitar problemas de cast direto do Postgres (que retorna long) para int
-                var nextPosition = await connection.ExecuteScalarAsync<object>(sqlPos, new { Status = (int)task.Status });
+                var nextPosition = await connection.ExecuteScalarAsync<object>(sqlPos, new
+                {
+                    Status = (int)task.Status,
+                    BoardType = (int)task.BoardType
+                });
                 task.Position = Convert.ToInt32(nextPosition);
 
-                // 2. Query de Insert
-                // Dica: Certifique-se que os nomes das propriedades em 'task' batem exatamente com @Title, @Description, etc.
                 const string sql = @"
-                    INSERT INTO tasks (title, description, usuario_id, due_date, priority, status, position)
-                    VALUES (@Title, @Description, @UsuarioId, @DueDate, @Priority, @Status, @Position)
+                    INSERT INTO tasks (title, description, usuario_id, due_date, priority, status, position, board_type)
+                    VALUES (@Title, @Description, @UsuarioId, @DueDate, @Priority, @Status, @Position, @BoardType)
                     RETURNING id;";
 
-                // O Postgres retorna o ID como Int32 ou Int64 dependendo do SERIAL. Convert.ToInt32 é o mais seguro.
                 var idGerado = await connection.ExecuteScalarAsync<object>(sql, new
                 {
                     task.Title,
                     task.Description,
                     task.UsuarioId,
                     task.DueDate,
-                    Priority = (int)task.Priority, // Cast explícito para evitar erro de tipo
-                    Status = (int)task.Status,     // Cast explícito para evitar erro de tipo
-                    task.Position
+                    Priority = (int)task.Priority,
+                    Status = (int)task.Status,
+                    task.Position,
+                    BoardType = (int)task.BoardType
                 });
 
                 return Convert.ToInt32(idGerado);
@@ -77,7 +77,7 @@ namespace CataVentoApi.Repositories.Repository
         }
 
         // 2. READ - Trazendo os dados do Usuário Responsável
-        public async Task<IEnumerable<KanbanTask>> GetAllTasksAsync()
+        public async Task<IEnumerable<KanbanTask>> GetAllTasksAsync(KanbanBoardTypeEnum boardType)
         {
             using (var connection = _connection.CreateConnection())
             {
@@ -85,6 +85,7 @@ namespace CataVentoApi.Repositories.Repository
                     SELECT t.*, u.""Id"", u.""Name"", u.""PhotoUrl""
                     FROM tasks t
                     LEFT JOIN ""Usuario"" u ON t.usuario_id = u.""Id""
+                    WHERE t.board_type = @BoardType
                     ORDER BY t.status, t.position";
 
                 return await connection.QueryAsync<KanbanTask, UsuarioResponsavel, KanbanTask>(
@@ -94,6 +95,8 @@ namespace CataVentoApi.Repositories.Repository
                         task.Responsavel = usuario;
                         return task;
                     },
+                    // Parâmetro para filtrar pelo tipo de quadro
+                    new { BoardType = (int)boardType },
                     splitOn: "Id"
                 );
             }
