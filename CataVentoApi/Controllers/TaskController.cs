@@ -4,6 +4,7 @@ using CataVentoApi.Entity.Enums;
 using CataVentoApi.Services.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace CataVentoApi.Controllers
 {
@@ -59,8 +60,8 @@ namespace CataVentoApi.Controllers
         {
             if (id != task.Id) return BadRequest("Task ID mismatch.");
             var result = await _taskService.UpdateTask(task);
-            if (!result) return NotFound();
-            return NoContent();
+            if (result == null) return NotFound();
+            return CreatedAtAction(nameof(GetTaskById), new { id = task.Id }, task);
         }
 
         [HttpPut("column")]

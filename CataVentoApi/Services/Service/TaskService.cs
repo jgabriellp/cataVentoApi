@@ -43,14 +43,36 @@ namespace CataVentoApi.Services.Service
         public async Task<bool> ReorderTasks(List<UpdatePriorityRequestDto> tasks)
             => await _taskRepository.ReorderTasksAsync(tasks);
 
-        public async Task<bool> UpdateTask(KanbanTask task)
+        public async Task<KanbanTask?> UpdateTask(KanbanTask task)
         {
             var user = await _usuarioRepository.GetById(task.UsuarioId ?? 0);
             var existingTask = await _taskRepository.GetTaskByIdAsync(task.Id);
 
-            if (user == null || existingTask == null) return false;
+            if (user == null || existingTask == null) return null;
 
-            return await _taskRepository.UpdateTaskAsync(task);
+            var updated = await _taskRepository.UpdateTaskAsync(task);
+
+            if (updated == false) return null;
+
+            var updatedtask = new KanbanTask
+            {
+                Id = task.Id,
+                Title = task.Title,
+                Description = task.Description,
+                UsuarioId = task.UsuarioId,
+                DueDate = task.DueDate,
+                Priority = task.Priority,
+                Status = task.Status,
+                Position = task.Position,
+                Responsavel = new UsuarioResponsavel
+                {
+                    Id = user.Id,
+                    Name = user.Name
+                },
+                BoardType = task.BoardType
+            };
+
+            return updatedtask;
         }
 
         public async Task<bool> UpdateColumn(int id, KanbanTaskStatusEnum newStatus, int newPosition)
