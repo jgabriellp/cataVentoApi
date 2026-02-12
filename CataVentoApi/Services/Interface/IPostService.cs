@@ -1,5 +1,6 @@
 ﻿using CataVentoApi.Entity;
 using CataVentoApi.Entity.Dto.RequestDto;
+using CataVentoApi.Entity.Dto.ResponseDto;
 
 namespace CataVentoApi.Services.Interface
 {
@@ -7,6 +8,7 @@ namespace CataVentoApi.Services.Interface
     {
         Task<Post?> GetPostByIdAsync(long postId);
         Task<Post?> GetPostByContentAsync(string content);
+        Task<IEnumerable<UserPostsCountResponseDto>> GetPostsCountByUserAsync();
         Task<IEnumerable<Post>> GetPostsByGroupIdAsync(long groupId, int pageNumber, int pageSize);
         Task<IEnumerable<Post>> GetPostsByGroupIdAndDateAsync(long groupId, DateTime startDate, DateTime endDate);
         Task<IEnumerable<Post>> GetPostsByUserIdAsync(long userId, int pageNumber, int pageSize);

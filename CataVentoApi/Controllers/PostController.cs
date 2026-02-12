@@ -28,6 +28,13 @@ namespace CataVentoApi.Controllers
             return Ok(post);
         }
 
+        [HttpGet("post-count-by-at")]
+        public async Task<IActionResult> GetPostCountByUsers()
+        {
+            var postCounts = await _postService.GetPostsCountByUserAsync();
+            return Ok(postCounts);
+        }
+
         [HttpGet("search-by-content")]
         public async Task<IActionResult> GetPostByContent([FromQuery] string content)
         {

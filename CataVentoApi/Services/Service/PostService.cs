@@ -1,6 +1,7 @@
 ﻿
 using CataVentoApi.Entity;
 using CataVentoApi.Entity.Dto.RequestDto;
+using CataVentoApi.Entity.Dto.ResponseDto;
 using CataVentoApi.Repositories.Interface;
 using CataVentoApi.Repositories.Repository;
 using CataVentoApi.Services.Interface;
@@ -46,6 +47,11 @@ namespace CataVentoApi.Services.Service
                 return null;
             }
             return post;
+        }
+
+        public async Task<IEnumerable<UserPostsCountResponseDto>> GetPostsCountByUserAsync()
+        {
+            return await _postRepository.GetPostsCountByUserAsync();
         }
 
         public async Task<IEnumerable<Post>> GetPostsByUserIdAsync(long userId, int pageNumber, int pageSize)
