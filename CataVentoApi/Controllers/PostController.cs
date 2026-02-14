@@ -29,9 +29,9 @@ namespace CataVentoApi.Controllers
         }
 
         [HttpGet("post-count-by-at")]
-        public async Task<IActionResult> GetPostCountByUsers()
+        public async Task<IActionResult> GetPostCountByUsers([FromQuery] DateTime startDate, [FromQuery] DateTime endDate)
         {
-            var postCounts = await _postService.GetPostsCountByUserAsync();
+            var postCounts = await _postService.GetPostsCountByUserAsync(startDate, endDate);
             return Ok(postCounts);
         }
 

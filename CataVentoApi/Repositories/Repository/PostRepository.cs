@@ -95,22 +95,24 @@ namespace CataVentoApi.Repositories.Repository
             }
         }
 
-        public async Task<IEnumerable<UserPostsCountResponseDto>> GetPostsCountByUserAsync()
+        public async Task<IEnumerable<UserPostsCountResponseDto>> GetPostsCountByUserAsync(DateTime startDate, DateTime endDate)
         {
             const string query = @"
-                SELECT 
-                    U.""Name"" || ' ' || U.""LastName"" AS ""Fullname"", 
+                SELECT
+                    U.""Name"" || ' ' || U.""LastName"" AS ""Fullname"",
                     COUNT(P.""PostId"") AS ""PostsCount""
                 FROM ""Usuario"" U
                 LEFT JOIN ""Post"" P ON U.""Id"" = P.""CreatorId""
-                WHERE U.""Role"" = 2 
+                    AND P.""Date"" >= @StartDate
+                    AND P.""Date"" <= @EndDate
+                WHERE U.""Role"" = 2
                   AND NOT U.""IsDeleted""
                 GROUP BY U.""Id"", U.""Name"", U.""LastName""
                 ORDER BY ""PostsCount"" DESC;";
 
             using (var connection = _connection.CreateConnection())
             {
-                return await connection.QueryAsync<UserPostsCountResponseDto>(query);
+                return await connection.QueryAsync<UserPostsCountResponseDto>(query, new { StartDate = startDate, EndDate = endDate });
             }
         }
 

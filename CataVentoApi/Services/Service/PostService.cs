@@ -49,9 +49,9 @@ namespace CataVentoApi.Services.Service
             return post;
         }
 
-        public async Task<IEnumerable<UserPostsCountResponseDto>> GetPostsCountByUserAsync()
+        public async Task<IEnumerable<UserPostsCountResponseDto>> GetPostsCountByUserAsync(DateTime startDate, DateTime endDate)
         {
-            return await _postRepository.GetPostsCountByUserAsync();
+            return await _postRepository.GetPostsCountByUserAsync(startDate, endDate);
         }
 
         public async Task<IEnumerable<Post>> GetPostsByUserIdAsync(long userId, int pageNumber, int pageSize)
