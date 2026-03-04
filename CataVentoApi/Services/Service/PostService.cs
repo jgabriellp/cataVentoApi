@@ -54,6 +54,37 @@ namespace CataVentoApi.Services.Service
             return await _postRepository.GetPostsCountByUserAsync(startDate, endDate);
         }
 
+        public async Task<IEnumerable<Post>> GetPostsByGroupIdAndUserRoleAsync(long groupId, int userRole, int pageNumber, int pageSize)
+        {
+            if (pageNumber < 1) pageNumber = 1;
+            if (pageSize < 1) pageSize = 5;
+
+            var posts = await _postRepository.GetPostsByGroupIdAndUserRoleAsync(groupId, userRole, pageNumber, pageSize);
+
+            if (!posts.Any()) return Enumerable.Empty<Post>();
+
+            var postIds = posts.Select(p => p.PostId);
+
+            var comments = await _commentRepository.GetCommentsByPostIdsAsync(postIds);
+
+            var likers = await _postLikerRepository.GetLikersByPostIdsAsync(postIds);
+
+            var commentsLookup = comments
+                .ToLookup(c => c.PostId, c => c.CommentId);
+
+            var likersLookup = likers
+                .ToLookup(l => l.PostId, l => l.UsuarioId);
+
+            foreach (var post in posts)
+            {
+                // Liga os Comentários
+                post.CommentsIds = commentsLookup[post.PostId].ToList();
+                // Liga os Likes
+                post.LikersIds = likersLookup[post.PostId].ToList(); 
+            }
+            return posts;
+        }
+
         public async Task<IEnumerable<Post>> GetPostsByUserIdAsync(long userId, int pageNumber, int pageSize)
         {
             if (pageNumber < 1) pageNumber = 1;

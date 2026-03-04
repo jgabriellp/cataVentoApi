@@ -5,6 +5,7 @@
         Paciente = 1,
         AT = 2,
         Coordenador = 3,
-        Administrador = 4
+        Administrador = 4,
+        Fono = 5
     }
 }

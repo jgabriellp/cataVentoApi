@@ -166,6 +166,33 @@ namespace CataVentoApi.Repositories.Repository
             }
         }
 
+        public async Task<IEnumerable<Post>> GetPostsByGroupIdAndUserRoleAsync(long groupId, int userRole, int pageNumber, int pageSize)
+        {
+            int offset = (pageNumber - 1) * pageSize;
+
+            const string query = @"
+                SELECT P.* FROM ""Post"" P
+                INNER JOIN ""Usuario"" U ON P.""CreatorId"" = U.""Id""
+                WHERE P.""GroupId"" = @GroupId
+                  AND U.""Role"" = @UserRole
+                ORDER BY P.""Date"" DESC
+                LIMIT @PageSize OFFSET @Offset;";
+
+            using (var connection = _connection.CreateConnection())
+            {
+                return await connection.QueryAsync<Post>(
+                    query,
+                    new
+                    {
+                        GroupId = groupId,
+                        UserRole = userRole,
+                        Offset = offset,
+                        PageSize = pageSize
+                    }
+                );
+            }
+        }
+
         public async Task<IEnumerable<Post>> GetPostsByUserIdAsync(long userId, int pageNumber, int pageSize)
         {
             int offset = (pageNumber - 1) * pageSize;
