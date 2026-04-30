@@ -1,6 +1,4 @@
 ﻿using Azure.Storage.Blobs;
-using Azure.Storage.Blobs.Models;
-using System.Net;
 
 namespace CataVentoApi.Services.Service
 {

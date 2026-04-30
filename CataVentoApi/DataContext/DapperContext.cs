@@ -2,8 +2,6 @@
 
 using Npgsql;
 using System.Data;
-using System;
-using Microsoft.Extensions.Configuration;
 
 namespace CataVentoApi.DataContext
 {

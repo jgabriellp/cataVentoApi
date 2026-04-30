@@ -251,9 +251,9 @@ D:/Projetos Asp.NET/CataVentoApi/CataVentoApi/obj/Debug/net8.0/swae.build.ex.cac
 /home/lima/Projetos .Net/cataVentoApi/CataVentoApi/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.CataVentoApi.props
 /home/lima/Projetos .Net/cataVentoApi/CataVentoApi/obj/Debug/net8.0/staticwebassets.pack.json
 /home/lima/Projetos .Net/cataVentoApi/CataVentoApi/obj/Debug/net8.0/scopedcss/bundle/CataVentoApi.styles.css
-/home/lima/Projetos .Net/cataVentoApi/CataVentoApi/obj/Debug/net8.0/CataVentoApi.csproj.CopyComplete
 /home/lima/Projetos .Net/cataVentoApi/CataVentoApi/obj/Debug/net8.0/CataVentoApi.dll
 /home/lima/Projetos .Net/cataVentoApi/CataVentoApi/obj/Debug/net8.0/refint/CataVentoApi.dll
 /home/lima/Projetos .Net/cataVentoApi/CataVentoApi/obj/Debug/net8.0/CataVentoApi.pdb
 /home/lima/Projetos .Net/cataVentoApi/CataVentoApi/obj/Debug/net8.0/CataVentoApi.genruntimeconfig.cache
 /home/lima/Projetos .Net/cataVentoApi/CataVentoApi/obj/Debug/net8.0/ref/CataVentoApi.dll
+/home/lima/Projetos .Net/cataVentoApi/CataVentoApi/obj/Debug/net8.0/CataVent.483C7A40.Up2Date

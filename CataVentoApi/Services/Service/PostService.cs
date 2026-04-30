@@ -159,10 +159,13 @@ namespace CataVentoApi.Services.Service
                 return null;
             }
 
+            var brazilTimeZone = TimeZoneInfo.FindSystemTimeZoneById("America/Sao_Paulo");
+            var brazilNow = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, brazilTimeZone);
+
             var newPost = new Post
             {
                 Content = postRequestDto.Content,
-                Date = DateTime.UtcNow,
+                Date = brazilNow,
                 GroupId = postRequestDto.GroupId,
                 CreatorId = postRequestDto.CreatorId,
                 ImageUrl = postRequestDto.ImageUrl,
