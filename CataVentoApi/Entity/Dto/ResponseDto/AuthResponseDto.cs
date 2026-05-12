@@ -9,6 +9,7 @@ namespace CataVentoApi.Entity.Dto.ResponseDto
         public string Email { get; set; } = string.Empty;
         public string PhotoUrl { get; set; } = string.Empty;
         public RoleEnum Role { get; set; }
+        public int[] BoardTypePermissionIds { get; set; } = [];
         public string Password { get; set; }
         public string Token { get; set; } = string.Empty;
     }

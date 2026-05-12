@@ -14,6 +14,7 @@ namespace CataVentoApi.Services.Interface
         Task<UsuarioResponseDto> CreateUserAsync(UsuarioRequestDto usuarioRequestDto);
         Task<bool> SetNewPassword(long userId, string oldPassword, string newPassword);
         Task<bool> UpdateUserAsync(long id, UsuarioRequestDto usuarioRequestDto);
+        Task<bool> UpdateBoardTypePermissionsAsync(long id, List<int> boardTypeIds);
         Task<bool> DeleteUserAsync(long id);
     }
 }

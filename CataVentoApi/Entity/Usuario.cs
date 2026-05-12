@@ -12,5 +12,6 @@ namespace CataVentoApi.Entity
         public string Password { get; set; }
         public string PhotoUrl { get; set; }
         public List<int> GroupIds { get; set; } = new List<int>();
+        public int[] BoardTypePermissionIds { get; set; } = [];
     }
 }

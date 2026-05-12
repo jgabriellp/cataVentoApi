@@ -13,6 +13,7 @@ namespace CataVentoApi.Repositories.Interface
         Task<IEnumerable<Usuario>> GetByName(string name);
         Task<Usuario> CreateAsync(Usuario usuario);
         Task<bool> UpdateAsync(Usuario usuario);
+        Task<bool> UpdateBoardTypePermissionsAsync(long id, int[] boardTypeIds);
         Task<bool> DeleteAsync(long id);
     }
 }

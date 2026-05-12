@@ -79,6 +79,15 @@ namespace CataVentoApi.Controllers
             return NoContent();
         }
 
+        [HttpPut("{id}/board-permissions")]
+        public async Task<IActionResult> UpdateBoardTypePermissions(long id, [FromBody] BoardTypePermissionsRequestDto dto)
+        {
+            var result = await _usuarioService.UpdateBoardTypePermissionsAsync(id, dto.BoardTypeIds);
+            if (!result)
+                return NotFound();
+            return NoContent();
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(long id, [FromBody] UsuarioRequestDto usuarioRequestDto)
         {

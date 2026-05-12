@@ -25,7 +25,7 @@ namespace CataVentoApi.Repositories.Repository
                 var parameters = new { Offset = offset, PageSize = pageSize };
 
                 var sqlUsersPaged = $@"
-                    SELECT ""Id"", ""Name"", ""LastName"", ""Role"", ""Email"", ""Password"", ""PhotoUrl"" 
+                    SELECT ""Id"", ""Name"", ""LastName"", ""Role"", ""Email"", ""Password"", ""PhotoUrl"", ""BoardTypePermissionIds""
                     FROM ""Usuario""
                     WHERE ""IsDeleted"" = FALSE
                     ORDER BY ""{orderByField}"" ASC  -- Usamos ""{orderByField}""
@@ -94,7 +94,7 @@ namespace CataVentoApi.Repositories.Repository
         public async Task<IEnumerable<Usuario>> GetAllUsersByGroupIdAsync(long groupId)
         {
             const string query = @"
-                SELECT u.""Id"", u.""Name"", u.""LastName"", u.""Role"", u.""Email"", u.""Password"", u.""PhotoUrl"" -- Seleção explícita de colunas com ""
+                SELECT u.""Id"", u.""Name"", u.""LastName"", u.""Role"", u.""Email"", u.""Password"", u.""PhotoUrl"", u.""BoardTypePermissionIds""
                 FROM ""Usuario"" u
                 INNER JOIN ""UsuarioGroup"" ug ON u.""Id"" = ug.""UsuarioId""
                 WHERE ug.""GroupId"" = @GroupId AND ""IsDeleted"" = FALSE";
@@ -210,6 +210,20 @@ namespace CataVentoApi.Repositories.Repository
                 var id = await connection.ExecuteScalarAsync<long>(query, usuario);
                 usuario.Id = id;
                 return usuario;
+            }
+        }
+
+        public async Task<bool> UpdateBoardTypePermissionsAsync(long id, int[] boardTypeIds)
+        {
+            const string query = @"
+                UPDATE ""Usuario""
+                SET ""BoardTypePermissionIds"" = @BoardTypeIds
+                WHERE ""Id"" = @Id";
+
+            using (var connection = _connection.CreateConnection())
+            {
+                var affectedRows = await connection.ExecuteAsync(query, new { Id = id, BoardTypeIds = boardTypeIds });
+                return affectedRows > 0;
             }
         }
 

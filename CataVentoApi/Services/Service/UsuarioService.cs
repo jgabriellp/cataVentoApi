@@ -31,7 +31,8 @@ namespace CataVentoApi.Services.Service
                 Role = usuario.Role,
                 Email = usuario.Email,
                 PhotoUrl = usuario.PhotoUrl,
-                GroupIds = usuario.GroupIds
+                GroupIds = usuario.GroupIds,
+                BoardTypePermissionIds = [..usuario.BoardTypePermissionIds]
             };
         }
 
@@ -51,7 +52,7 @@ namespace CataVentoApi.Services.Service
                 {
                     new Claim(ClaimTypes.Email, user.Result.Email),
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(60),
+                Expires = DateTime.UtcNow.AddHours(8),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
@@ -66,6 +67,7 @@ namespace CataVentoApi.Services.Service
                 Email = user.Result.Email,
                 PhotoUrl = user.Result.PhotoUrl,
                 Role = user.Result.Role,
+                BoardTypePermissionIds = user.Result.BoardTypePermissionIds,
                 Password = user.Result.Password,
                 Token = userToken
             };
@@ -154,6 +156,15 @@ namespace CataVentoApi.Services.Service
             user.Password = hashedNewPassword;
 
             return await _usuarioRepository.UpdateAsync(user);
+        }
+
+        public async Task<bool> UpdateBoardTypePermissionsAsync(long id, List<int> boardTypeIds)
+        {
+            var user = await _usuarioRepository.GetById(id);
+            if (user == null)
+                return false;
+
+            return await _usuarioRepository.UpdateBoardTypePermissionsAsync(id, [..boardTypeIds]);
         }
 
         public async Task<bool> UpdateUserAsync(long id, UsuarioRequestDto usuarioRequestDto)

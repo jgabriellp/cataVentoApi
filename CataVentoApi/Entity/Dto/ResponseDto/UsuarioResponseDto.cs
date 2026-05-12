@@ -11,5 +11,6 @@ namespace CataVentoApi.Entity.Dto.ResponseDto
         public string Email { get; set; }
         public string PhotoUrl { get; set; }
         public List<int> GroupIds { get; set; } = new List<int>();
+        public List<int> BoardTypePermissionIds { get; set; } = new List<int>();
     }
 }

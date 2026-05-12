@@ -2,7 +2,8 @@
 {
     public enum KanbanBoardTypeEnum
     {
-        Coordination = 1,
-        Management = 2
+        CoordinationAisa = 1,
+        Management = 2,
+        CoordinationLuan = 3
     }
 }
